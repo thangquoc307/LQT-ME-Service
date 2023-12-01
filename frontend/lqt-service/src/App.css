@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Roboto:wght@500&display=swap');
+* {
+  font-family: 'Roboto', sans-serif;
+  color: #151018;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+:root {
+  --offset: 10px;
+  --header-height: 100px;
+}
+.color0 {
+  background-color: white;
+}
+.color1 {
+  background-color: #c1151a;
+}
+.color2 {
+  background-color: #e49db1;
+}
+.color3 {
+  background-color: #ccc5d9;
+}
+.color4 {
+  background-color: #57546a;
+  color: white;
+}
+.color5 {
+  background-color: #151018;
+  color: white;
+}
+.borderradius {
+  border-radius: 20px;
+}
+.boxshadow-inset{
+  box-shadow: inset 10px 10px 20px #151018;
+}
+.boxshadow-outset{
+  box-shadow: 10px 10px 20px #151018;
+}
+.cursorPoint{
+  cursor: pointer;
+}
+.targetText{
+  alignment-baseline: middle;
+  text-anchor: middle;
+  text-shadow:
+          1px 1px 0 #c1151a,
+          -1px -1px 0 #c1151a,
+          1px -1px 0 #c1151a,
+          -1px 1px 0 #c1151a;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+.offset-header {
+  margin-top: var(--header-height);
+}
+.z-index-1 {
+  z-index: 1;
+}
+.z-index-2 {
+  z-index: 2;
+}
+.z-index-3 {
+  z-index: 3;
+}
+.z-index-4 {
+  z-index: 4;
+}
+.hover-button-chatbox {
+  background-color: white;
+  border: white;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  cursor: pointer;
+  background-size: cover;
+  border: white 2px solid;
+  width: 80%;
+  margin: 10%;
+}

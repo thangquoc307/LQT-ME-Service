@@ -1,0 +1,166 @@
+:root {
+    --login-table-width: 750px;
+}
+.login-table {
+    width: var(--login-table-width);
+    position: fixed;
+    left: calc((100% - var(--login-table-width)) / 2);
+    top: 100px;
+    display: grid;
+    grid-template-areas: "logo login regist" "form form form";
+    grid-template-columns: 1fr repeat(2, 150px);
+    grid-template-rows: 50px 1fr;
+}
+.login-table-logo {
+
+}
+.login-table-login {
+    grid-area: login;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+.login-table-regist {
+    grid-area: regist;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+.login-table-form {
+    grid-area: form;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-image: url("../../image/logo/r-logo-gray.png");
+    background-size: 200px;
+    background-position-x: left;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+}
+.login-form {
+    width: 100%;
+    height: 100%;
+    padding: 50px 60px;
+    display: grid;
+    grid-template-rows: repeat(2, 60px) 80px;
+}
+.login-form input{
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: solid 1px #57546a;
+}
+.login-form-input {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+.login-form-button {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 150px);
+}
+.login-form-button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 40px;
+    border-radius: 20px;
+    margin: 20px 0 0 10%;
+    font-size: 16px;
+}
+.regit-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    padding: 50px 60px 0;
+}
+.regit-form-input {
+    width: 90%;
+    display: grid;
+    margin: 0 5%;
+    height: 100px;
+    grid-template-rows: 1fr 1fr 1fr;
+
+}
+.regit-form-input input{
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: solid 1px #57546a;
+}
+.regit-form-checkbox {
+    height: 30px;
+    padding: 0 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+}
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+.toggle-switch-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ddd;
+    border-radius: 20px;
+    box-shadow: inset 0 0 0 2px #ccc;
+    transition: background-color 0.3s ease-in-out;
+}
+.toggle-switch-handle {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background {
+    background-color: #c1151a;
+    box-shadow: inset 0 0 0 2px white;
+}
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background .toggle-switch-handle {
+    transform: translateX(30px);
+}
+.regit-form-checkbox-title{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.regit-form-button {
+    height: 120px;
+    padding: 20px 60px 60px;
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 150px);
+}
+.regit-form-button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 40px;
+    border-radius: 20px;
+    margin: 20px 0 0 10%;
+    font-size: 16px;
+}
+.regit-form-input small{
+    text-align: center;
+    color: #c1151a;
+}
