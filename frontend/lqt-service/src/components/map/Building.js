@@ -16,11 +16,9 @@ export default function Building() {
 
     return (
         <div className="buiding">
-            {
-                (level == -1) ?
-                    <BuildingMap selectLevel={selectLevel}/> :
-                    <DetailLevel level={level}/>
-            }
+            {level == -1 && <BuildingMap selectLevel={selectLevel}/>}
+            {level != -1 && <DetailLevel selectLevel={selectLevel} level={level}/>}
+
 
         </div>
 

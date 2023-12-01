@@ -1,5 +1,5 @@
 .buiding {
-    width: 200%;
+    width: 50%;
 }
 .building-map {
     aspect-ratio: 1/1;
@@ -14,9 +14,8 @@
 }
 .building-map-polygon {
     opacity: 0.3;
-    /*fill: #57546a;*/
+    fill: #57546a;
     transition-duration: 0.2s;
-    fill: blue;
 }
 polygon:hover{
     fill: #c1151a;
@@ -28,4 +27,14 @@ polygon:hover{
     background-image: url("../../image/map/level_detail.png");
     background-position: center;
     background-size: cover;
+}
+.detail-level-back {
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 20px;
+    left: 20px;
 }
