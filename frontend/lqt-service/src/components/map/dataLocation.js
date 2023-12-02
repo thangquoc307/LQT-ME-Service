@@ -1,3 +1,11 @@
+export const getLocation = (e) => {
+    let result = ""
+    e.forEach(position =>
+        result += `${position.position_x / 100}, 
+            ${position.position_y / 100} `
+    )
+    return result;
+}
 export const levelLocation = [
     {
         level: 21,

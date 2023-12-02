@@ -45,7 +45,7 @@ export default function Mainpage() {
             </div>
             <div className="mainpage-line"/>
             <div className="footer">
-                <div className="contact-img color3 borderradius boxshadow-outset">
+                <div className="contact-img color4 borderradius boxshadow-outset">
                     <iframe className="borderradius contact-map"
                             src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d239.62087977584915!2d108.20280161025205!3d16.068910376184224!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1701496065310!5m2!1svi!2s"
                             referrerPolicy="no-referrer-when-downgrade">

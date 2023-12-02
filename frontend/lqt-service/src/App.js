@@ -11,16 +11,16 @@ import Mainpage from "./components/mainpage/Mainpage";
 function App() {
   return (
     <div>
-        <ToastContainer position="bottom-left"/>
-        <Routes>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="*" element={<Header/>}/>
-        </Routes>
-        <Routes>
-            <Route path="/" element={<Mainpage/>}/>
+        {/*<ToastContainer position="bottom-left"/>*/}
+        {/*<Routes>*/}
+        {/*    <Route path="/login" element={<Login/>}/>*/}
+        {/*    <Route path="*" element={<Header/>}/>*/}
+        {/*</Routes>*/}
+        {/*<Routes>*/}
+        {/*    <Route path="/" element={<Mainpage/>}/>*/}
 
-        </Routes>
-        {/*<Building/>*/}
+        {/*</Routes>*/}
+        <Building/>
     </div>
   );
 }
