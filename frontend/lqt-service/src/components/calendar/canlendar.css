@@ -1,0 +1,24 @@
+.calendar{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+
+}
+.calendar div{
+    width: 90%;
+    margin: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.calendar-day {
+    color: #57546a;
+}
+.select-day {
+    border: #c1151a 2px solid;
+    color: #c1151a;
+}

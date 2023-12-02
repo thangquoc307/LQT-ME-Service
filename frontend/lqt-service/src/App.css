@@ -9,7 +9,7 @@
   height: 0;
 }
 :root {
-  --offset: 10px;
+  --offset: 15px;
   --header-height: 100px;
 }
 .color0 {

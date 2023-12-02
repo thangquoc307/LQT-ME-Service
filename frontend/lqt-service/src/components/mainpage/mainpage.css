@@ -1,0 +1,171 @@
+:root{
+    --contact-box-width: 25px;
+    --contact-box-height: 120px;
+    --contact-box-deep: 20px;
+}
+.contact {
+    display: grid;
+    padding: var(--offset);
+    grid-template-columns: 1fr 350px;
+    height: 500px;
+    grid-template-rows: 1fr 150px;
+    grid-template-areas: "coverimg calendar" "coverimg button";
+}
+.contact-cover {
+    grid-area: coverimg;
+}
+.slogan {
+    width: 40%;
+    height: 50px;
+    padding: 5px 0;
+    margin: 0 30%;
+    align-items: center;
+    overflow: hidden;
+    display: flex;
+}
+.slogan-logo {
+    width: 40px;
+    aspect-ratio: 1/1;
+    background-image: url("../../image/logo/r-logo.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slogan-content {
+    display: inline-flex;
+    align-items: center;
+    animation: runSlogan 5s steps(10000) infinite;
+    font-size: 20px;
+    width: 100%;
+}
+.slogan-content span {
+    display: block;
+}
+@keyframes runSlogan {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+.contact-button {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    grid-area: button;
+    padding-right: var(--offset);
+}
+.contact-box {
+    height: var(--contact-box-height);
+    transition-duration: 0.2s;
+}
+.contact-box-front {
+    width: var(--contact-box-width);
+    height: var(--contact-box-height);
+    transition-duration: 0.2s;
+    background-position-X: center;
+    background-position-Y: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: #151018 1px solid;
+}
+.contact-box-root {
+    width: var(--contact-box-width);
+    height: var(--contact-box-deep);
+    left: 0;
+    top: calc(-1 * (var(--contact-box-height) + var(--contact-box-deep)));
+    position: relative;
+    transform-origin: bottom;
+    transform: skewX(-45deg);
+    border: #151018 1px solid;
+}
+.contact-box-side {
+    width: var(--contact-box-deep);
+    height: var(--contact-box-height);
+    left: var(--contact-box-width);
+    top: calc(-1 * var(--contact-box-height) - var(--contact-box-deep));
+    position: relative;
+    transform-origin: left;
+    transform: skewY(-45deg);
+    border: #151018 1px solid;
+}
+.contact-box-front p{
+    transform-origin: left top;
+    transform: rotate(-90deg) translateX(calc(-1 * var(--contact-box-height) + var(--contact-box-deep) + 10px));
+    width: var(--contact-box-height);
+    height: var(--contact-box-width);
+}
+.hotline {
+    background-image: url("../../image/icon/hotline.png");
+}
+.email {
+    background-image: url("../../image/icon/email.png");
+}
+.facebook {
+    background-image: url("../../image/icon/facebook.png");
+}
+.contact-box:hover{
+    transform: translateY(-10px);
+    transition-duration: 0.2s;
+}
+.contact-box:hover .contact-box-front {
+    background-color: #151018;
+    border: #c1151a 1px solid;
+}
+.contact-box:hover .contact-box-front p {
+    color: #c1151a;
+}
+.contact-box:hover .contact-box-root {
+    background-color: #151018;
+    border: #c1151a 1px solid;
+}
+.contact-box:hover .contact-box-side {
+    background-color: #151018;
+    border: #c1151a 1px solid;
+}
+.contact-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-auto-rows: 1fr 50px;
+    border: #151018 1px solid;
+}
+.contact-map {
+    width: 100%;
+    height: 100%;
+    border: #151018 1px solid;
+}
+.contact-img-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact-calendar {
+    grid-area: calendar;
+    padding-left: var(--offset);
+    padding-bottom: var(--offset);
+}
+.contact-calendar-table {
+    width: 100%;
+    height: 100%;
+    padding: calc(var(--offset) * 2) calc(var(--offset) * 2) 0;
+}
+.mainpage-line {
+    width: 100%;
+    height: 150px;
+    background-image: url("../../image/logo/LineSP.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.footer {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    height: 500px;
+    width: 100%;
+    padding: var(--offset);
+}
+

@@ -7,7 +7,7 @@
     grid-template-columns: 275px 1fr repeat(2, 150px);
     left: var(--offset);
     top: var(--offset);
-    padding: var(--offset);
+    padding: 4px;
 }
 .header-logo {
     background-image: url("../../image/logo/logo.png");

@@ -18,8 +18,6 @@ export default function Building() {
         <div className="buiding">
             {level == -1 && <BuildingMap selectLevel={selectLevel}/>}
             {level != -1 && <DetailLevel selectLevel={selectLevel} level={level}/>}
-
-
         </div>
 
     )
