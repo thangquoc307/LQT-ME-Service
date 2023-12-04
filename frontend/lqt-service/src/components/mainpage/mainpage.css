@@ -13,6 +13,8 @@
 }
 .contact-cover {
     grid-area: coverimg;
+    border: #ccc5d9 1px solid;
+    border-radius: 21px;
 }
 .slogan {
     width: 40%;
@@ -131,12 +133,11 @@
     background-position: center;
     display: grid;
     grid-auto-rows: 1fr 50px;
-    border: #151018 1px solid;
 }
 .contact-map {
     width: 100%;
     height: 100%;
-    border: #151018 1px solid;
+    border: #ccc5d9 1px solid;
 }
 .contact-img-text {
     display: flex;
@@ -156,7 +157,7 @@
 }
 .mainpage-line {
     width: 100%;
-    height: 150px;
+    height: 100px;
     background-image: url("../../image/logo/LineSP.png");
     background-position: center;
     background-size: contain;
@@ -164,9 +165,33 @@
 }
 .footer {
     display: grid;
-    grid-template-columns: 500px 1fr;
-    height: 500px;
+    grid-template-columns: 1fr 400px;
+    height: 400px;
     width: 100%;
     padding: var(--offset);
+}
+.footer-ìnfo {
+    margin-right: var(--offset);
+    background-image: url("../../image/cover/footer.png");
+    background-size: cover;
+    background-position-x: right;
+    display: grid;
+    grid-template-columns: 150px 450px;
+}
+.footer-info-avata {
+    width: 80px;
+    aspect-ratio: 1/1;
+    background-image: url("../../image/logo/thang.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: white 2px solid;
+    margin: 20px;
+}
+.footer-ìnfo-quote {
+    margin-top: 30px;
+}
+.footer-ìnfo-quote p {
+    text-align: right;
 }
 

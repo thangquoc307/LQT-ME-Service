@@ -1,12 +1,18 @@
-
 .header {
-    width: calc(100% - 2 * var(--offset));
-    height: calc(var(--header-height) - 2 * var(--offset));
+    width: 100%;
+    height: var(--header-height);
     position: fixed;
+    margin: 0;
+    z-index: 100;
+    top: 0;
+    padding: var(--offset);
+
+}
+.header-inset {
+    width: 100%;
+    height: 100%;
     display: grid;
-    grid-template-columns: 275px 1fr repeat(2, 150px);
-    left: var(--offset);
-    top: var(--offset);
+    grid-template-columns: 300px 1fr 30px 150px;
     padding: 4px;
 }
 .header-logo {
@@ -18,16 +24,7 @@
 }
 .header-logo:hover {
     transition-duration: 0.2s;
-    scale: 1.03;
-}
-@keyframes logo-light {
-    0% {
-        background-color: #c1151a;
-    }
-    50% {
-        background-color: black;
-    }
-
+    scale: 0.95;
 }
 .header-button {
     width: calc(100% - 2 * var(--offset));

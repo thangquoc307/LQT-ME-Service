@@ -25,9 +25,6 @@ export default function Login(){
                     isLogin ? <div><LoginForm/></div> : <div><RegistForm/></div>
                 }
             </div>
-
-
-
         </div>
     )
 }

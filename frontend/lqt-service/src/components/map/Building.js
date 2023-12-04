@@ -7,13 +7,6 @@ export default function Building() {
     const selectLevel = (e) => {
         setLevel(e);
     }
-
-
-
-
-
-
-
     return (
         <div className="buiding">
             {level == -1 && <BuildingMap selectLevel={selectLevel}/>}

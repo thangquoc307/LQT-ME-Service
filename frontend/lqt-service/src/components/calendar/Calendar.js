@@ -19,7 +19,6 @@ export default function Calendar() {
     for(let i = 1; i <= numberOfDays; i++){
         dateArray.push(i);
     }
-    console.log(dateArray)
 
     return (
         <div className="calendar">
@@ -33,7 +32,7 @@ export default function Calendar() {
             {
                 dateArray.map((e, index)=> {
                     return (
-                        <div className={(e != date) ? "calendar-day" : "select-day"}>{e}</div>
+                        <div className={(e != date) ? "calendar-day" : "select-day color0"}>{e}</div>
                     )
                 })
             }

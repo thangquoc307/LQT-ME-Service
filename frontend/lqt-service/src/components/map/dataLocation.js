@@ -6,6 +6,34 @@ export const getLocation = (e) => {
     )
     return result;
 }
+export const getAvgX = (e) => {
+    let max_x = e[0].position_x;
+    let min_x = e[0].position_x;
+    for (let i = 0; i < e.length; i++){
+        let positionX = e[i].position_x;
+        if (max_x < positionX){
+            max_x = positionX;
+        }
+        if (min_x > positionX){
+            min_x = positionX;
+        }
+    }
+    return (max_x + min_x) / 200;
+}
+export const getAvgY = (e) => {
+    let max_y = e[0].position_y;
+    let min_y = e[0].position_y;
+    for (let i = 0; i < e.length; i++){
+        let positionY = e[i].position_y;
+        if (max_y < positionY){
+            max_y = positionY;
+        }
+        if (min_y > positionY){
+            min_y = positionY;
+        }
+    }
+    return (max_y + min_y) / 200;
+}
 export const levelLocation = [
     {
         level: 21,

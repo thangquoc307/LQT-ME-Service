@@ -1,0 +1,21 @@
+.managePage {
+    display: grid;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: 4fr 5fr;
+    grid-template-areas: "button button" "map option";
+    padding: var(--offset);
+}
+.managePage-button {
+    grid-area: button;
+    background-image: url("../../image/logo/LineSP.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: var(--offset);
+}
+.managePage-map {
+    grid-area: map;
+}
+.managePage-option {
+    grid-area: option;
+}
