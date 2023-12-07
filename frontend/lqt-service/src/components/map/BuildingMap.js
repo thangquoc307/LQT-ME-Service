@@ -1,7 +1,7 @@
 import "./building.css"
 import {getLocation, levelLocation} from "./dataLocation";
 import {formatNumberOverNine} from "../../service/formatData";
-export default function BuildingMap({selectLevel}) {
+export default function BuildingMap({selectLevel, setSelectRoom, setSelectLevel}) {
     const mapLocation = levelLocation;
     const fakeData = [
         {
@@ -105,8 +105,9 @@ export default function BuildingMap({selectLevel}) {
         document.getElementById(`poly-${index}`).style.fill = "";
         document.getElementById(`table-${index}`).style.backgroundColor = "";
     }
+    setSelectRoom(-1);
     return (
-        <div className="building-map color3 borderradius boxshadow-outset">
+        <div className="building-map color3 borderradius boxshadow-inset">
             <svg className="building-map-svg"
                  viewBox="0 0 100 100" preserveAspectRatio="none">
                 {mapLocation.map(e => {
@@ -115,7 +116,7 @@ export default function BuildingMap({selectLevel}) {
                             id={`poly-${e.level}`}
                             className="cursorPoint building-map-polygon"
                             points={getLocation(e.point)}
-                            onClick={() => {selectLevel(e.level)}}
+                            onClick={() => {setSelectLevel(e.level)}}
                             onMouseOver={() => {mouseOver(e.level)}}
                             onMouseLeave={() => {mouseLeave(e.level)}}
                         />
@@ -130,7 +131,7 @@ export default function BuildingMap({selectLevel}) {
                                  id={`table-${e.level}`}
                                  onMouseOver={() => {mouseOver(e.level)}}
                                  onMouseLeave={() => {mouseLeave(e.level)}}
-                                 onClick={() => {selectLevel(e.level)}}
+                                 onClick={() => {setSelectLevel(e.level)}}
                             >
                                 <div className="level-notification-item-key">
                                     <div className="level-notification-item-key-name color4 borderradius">

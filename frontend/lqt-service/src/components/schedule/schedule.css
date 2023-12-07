@@ -1,0 +1,159 @@
+.schedule {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    width: 100%;
+    height: 100%;
+    border-bottom: #151018 1px solid;
+}
+.schedule-calendar {
+    margin-right: var(--offset);
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+.schedule-detail {
+    width: 100%;
+    height: 100%;
+}
+.schedule-calendar-time {
+    transform: rotate(-90deg) translateX(calc(var(--calendarHeight) * -1));
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: left top;
+    width: var(--calendarHeight);
+    height: 50px;
+}
+.schedule-calendar-detail {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: "current day none" "back schedule next";
+    width: 100%;
+    height: 100%;
+    padding: var(--offset);
+}
+.schedule-calendar-detail-button-back-container {
+    grid-area: back;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.schedule-calendar-detail-button-next-container {
+    grid-area: next;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.schedule-calendar-detail-button-back, .schedule-calendar-detail-button-next {
+    width: 80%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition-duration: 0.2s;
+}
+.schedule-calendar-detail-button-back {
+    background-image: url("../../image/icon/back.png");
+}
+.schedule-calendar-detail-button-next {
+    background-image: url("../../image/icon/nexticon.png");
+}
+.schedule-calendar-detail-button-back:hover, .schedule-calendar-detail-button-next:hover {
+    scale: 1.05;
+    transition-duration: 0.2s;
+    background-color: #c1151a;
+}
+.schedule-calendar-detail-content-header {
+    display: grid;
+    grid-area: day;
+    grid-template-columns: repeat(7, 1fr);
+}
+.schedule-calendar-detail-content-header div {
+    width: 90%;
+    margin: 5%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.schedule-calendar-detail-content-body {
+    display: grid;
+    grid-area: schedule;
+    grid-template-columns: repeat(7, 1fr);
+}
+.schedule-calendar-detail-content-body div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detail-day {
+    transition-duration: 0.2s;
+    border-radius: 50%;
+    width: 90%;
+    margin: 5%;
+    aspect-ratio: 1/1;
+    color: #57546a;
+
+}
+.detail-day-today {
+    border: #c1151a 3px solid;
+}
+.detail-day-select {
+    background-color: green;
+    color: white;
+}
+.detail-day-unselect:hover {
+    transition-duration: 0.2s;
+    background-color: #e49db1;
+}
+.schedule-calendar-detail-button-current {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-position: center;
+    background-image: url("../../image/icon/currentTime.png");
+    background-size: contain;
+    transition-duration: 0.2s;
+}
+.schedule-calendar-detail-button-current:hover {
+    scale: 1.05;
+    transition-duration: 0.2s;
+    background-color: #e49db1;
+}
+.detail-day-alert {
+    color: white;
+    position: absolute;
+    transform: translateY(-15px) translateX(15px);
+    padding: 5px 8px;
+    border-radius: 50%;
+}
+.schedule-detail-empty {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../image/icon/no-schedule.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.schedule-detail-has {
+    width: 100%;
+    height: var(--calendarHeight);
+    overflow: auto;
+}
+.schedule-detail-has-item {
+    padding: var(--offset);
+    border-top: #151018 1px solid;
+    border-bottom: #151018 1px solid;
+    transition-duration: 0.2s;
+
+}
+.schedule-detail-has-item p {
+    margin: 0;
+}
+.schedule-detail-has-item:hover {
+    background-color: rgba(0, 128, 0, 0.3);
+    transition-duration: 0.2s;
+}

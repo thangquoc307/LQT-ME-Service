@@ -18,8 +18,8 @@ function App() {
         <Routes>
             <Route path="/" element={<Mainpage/>}/>
             <Route path="/admin" element={<ManagerPage/>}/>
-
         </Routes>
+
     </div>
   );
 }

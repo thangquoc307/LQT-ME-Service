@@ -70,3 +70,7 @@ body {
   width: 80%;
   margin: 10%;
 }
+.textAlert {
+  color: #c1151a;
+  font-weight: bold;
+}

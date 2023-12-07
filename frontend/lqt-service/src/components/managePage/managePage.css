@@ -1,7 +1,10 @@
+:root {
+    --calendarHeight: 400px;
+}
 .managePage {
     display: grid;
-    grid-template-rows: 80px 1fr;
-    grid-template-columns: 4fr 5fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 3fr 4fr;
     grid-template-areas: "button button" "map option";
     padding: var(--offset);
 }
@@ -18,4 +21,18 @@
 }
 .managePage-option {
     grid-area: option;
+    display: grid;
+    grid-template-areas: "calendar chat" "request chat";
+    grid-template-columns: 1fr 320px;
+    grid-template-rows: var(--calendarHeight) 1fr;
+    margin-left: var(--offset);
+}
+.managePage-option-calendar {
+    grid-area: calendar;
+}
+.managePage-option-chat {
+    grid-area: chat;
+}
+.managePage-option-request {
+    grid-area: request;
 }

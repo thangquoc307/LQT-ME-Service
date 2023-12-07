@@ -16,13 +16,20 @@
 .building-map-polygon {
     fill: rgba(255, 255, 255, 0);
 }
-.polygon-hover{
-    stroke: #151018;
+.polygon-select {
+    stroke: rgba(255, 255, 255, 0.5);
+    fill: rgba(0, 255, 0, 0.5);
+    transition-duration: 0.2s;
     stroke-width: 0.2px;
+}
+.polygon-nonselect{
+    stroke: #151018;
     fill: rgba(255, 255, 255, 0.2);
     transition-duration: 0.2s;
+    stroke-width: 0.2px;
 }
-.polygon-hover:hover {
+
+.polygon-nonselect:hover {
     fill: rgba(255, 255, 255, 0.8);
     transition-duration: 0.2s;
     stroke: rgba(255, 255, 255, 0.8);
@@ -42,14 +49,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 20px;
+    bottom: 20px;
     left: 20px;
 }
 .level-notification {
     position: absolute;
     right: var(--offset);
     bottom: var(--offset);
-    width: 200px;
+    width: 220px;
     height: 80%;
     display: grid;
     grid-template-rows: repeat(15, 1fr);
@@ -105,7 +112,7 @@
 }
 .detail-level-title {
     position: absolute;
-    bottom: 20px;
+    top: 20px;
     width: 200px;
     height: 40px;
     display: flex;
@@ -123,5 +130,17 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 5px;
+}
+.detail-level-notification-number {
+    background-color: #c1151a;
+    color: white;
+    display: flex;
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(25%) translateY(-50%);
+    font-size: 12px;
 }
 

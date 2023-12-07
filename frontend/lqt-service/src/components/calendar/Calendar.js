@@ -22,13 +22,13 @@ export default function Calendar() {
 
     return (
         <div className="calendar">
-            <div>Mo</div>
-            <div>Tu</div>
-            <div>We</div>
-            <div>Th</div>
-            <div>Fr</div>
-            <div className="color4">Sa</div>
-            <div className="color5">Su</div>
+            <div>T2</div>
+            <div>T3</div>
+            <div>T4</div>
+            <div>T5</div>
+            <div>T6</div>
+            <div className="color4">T7</div>
+            <div className="color5">CN</div>
             {
                 dateArray.map((e, index)=> {
                     return (
