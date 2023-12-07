@@ -36,8 +36,5 @@ public class Customer {
     private List<Request> requests;
     @JsonBackReference
     @OneToMany(mappedBy = "customer")
-    private List<Wallet> wallets;
-    @JsonBackReference
-    @OneToMany(mappedBy = "customer")
     private List<Room> rooms;
 }

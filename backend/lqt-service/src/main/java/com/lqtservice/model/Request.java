@@ -42,5 +42,6 @@ public class Request {
     @JsonBackReference
     @OneToMany(mappedBy = "request")
     private List<Feedback> feedbacks;
-
+    @Column(name = "mess", columnDefinition = "longtext")
+    private String mess;
 }

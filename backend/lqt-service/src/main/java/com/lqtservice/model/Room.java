@@ -28,8 +28,5 @@ public class Room {
     private Integer level;
     @JsonBackReference
     @OneToMany(mappedBy = "room")
-    private List<RoomPosition> roomPositions;
-    @JsonBackReference
-    @OneToMany(mappedBy = "room")
     private List<Request> requests;
 }
