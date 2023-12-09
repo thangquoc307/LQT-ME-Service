@@ -24,8 +24,8 @@
 .request-list-detail {
     display: grid;
     grid-template-columns: 1fr 250px;
-    grid-template-rows: 50px 80px 1fr;
-    grid-template-areas: "room room" "time info" "mess mess";
+    grid-template-rows: 50px 80px 1fr 80px;
+    grid-template-areas: "room room" "time info" "mess mess" "button button";
 }
 .request-holding {
     padding: var(--offset);
@@ -72,7 +72,7 @@
 }
 .request-list-detail-mess {
     grid-area: mess;
-    height: calc(3/7 * (100vw - var(--offset)) - var(--calendarHeight) - 50px - 50px - 80px);
+    height: calc(3/7 * (100vw - var(--offset)) - var(--calendarHeight) - 50px - 50px - 80px - 80px);
     width: 100%;
     border: none;
     background: none;
@@ -83,7 +83,7 @@
 .request-list-detail-info-avatar {
     background-color: white;
     height: calc(100% - var(--offset));
-    margin: calc(var(--offset) / 2);
+    margin: calc((var(--offset) / 2) - 1px);
     aspect-ratio: 1/1;
     border-radius: 50%;
     border: #151018 1px solid;
@@ -95,4 +95,22 @@
 }
 .request-list-detail-info-des p {
     margin: 4px;
+}
+.request-list-detail-button {
+    grid-area:  button;
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 150px);
+}
+.request-list-detail-button-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 40px;
+    margin: 5% 0;
+    transition-duration: 0.2s;
+}
+.request-list-detail-button-item:hover {
+    scale: 1.05;
+    transition-duration: 0.2s;
 }

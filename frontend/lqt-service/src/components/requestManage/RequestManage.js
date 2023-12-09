@@ -1,14 +1,34 @@
 import "./requestManage.css"
 import {useEffect, useState} from "react";
-import {getRequestHolding} from "../../service/ApiConnection";
+import {deleteRequest, getRequestHolding} from "../../service/ApiConnection";
 import {getDate, reduceLengthName} from "../../service/formatData";
-export default function RequestManage() {
-
+import ModalConfirm from "../modal/ModalConfirm";
+import {toast} from "react-toastify";
+import ModalSetupSchedule from "../modal/ModalSetupSchedule";
+export default function RequestManage({useModal, setUseModal}) {
     const [requestList, setRequestList] = useState();
     const [selectRequest, setSelectRequest] = useState(-1);
     const [detailRequest, setDetailRequest] = useState();
+    const [contentModal, setContentModal] = useState();
+    const showModal = () => {
+        setContentModal(
+            `<p>Bạn muốn hủy yêu cầu từ<br/>
+                   <span class="textAlert"> ${detailRequest.customer.name} </span>
+                   phòng <span class="textAlert"> ${detailRequest.room.name} ?</span></p>`
+        )
+        setUseModal(1);
+    }
+    const handleConfirm = async () => {
+        const data = await deleteRequest(detailRequest.id);
 
-
+        if (data.status == 200) {
+            toast.success("Hủy yêu cầu thành công");
+            setSelectRequest(-1);
+            setUseModal(0);
+        } else {
+            toast.warn("Hủy yêu cầu không thành công");
+        }
+    }
     const getRequestList = async () => {
         const data = await getRequestHolding();
         setRequestList(data);
@@ -18,14 +38,30 @@ export default function RequestManage() {
     }
     useEffect(() => {
         getRequestList();
-    }, [])
+    }, [useModal])
     useEffect(() => {
         if (selectRequest != -1){
             getDetail();
+        } else {
+            setDetailRequest(null);
         }
     }, [selectRequest])
     return (
         <div className="request">
+            {useModal == 2 &&
+                <ModalSetupSchedule
+                    request={detailRequest}
+                    setUseModal={setUseModal}
+                    setSelectRequest={setSelectRequest}
+                />
+            }
+            {useModal == 1 &&
+                <ModalConfirm
+                    setUseModal={setUseModal}
+                    content={contentModal}
+                    confirmAction={handleConfirm}
+                />
+            }
             <div className="request-header color5">Quản lý yêu cầu</div>
             <div className="request-list color0 boxshadow-inset">
                 <div className="request-list-item">
@@ -72,10 +108,16 @@ export default function RequestManage() {
                                             {detailRequest.customer.phone}
                                         </p>
                                     </div>
-
                                 </div>
                                 <div className="request-list-detail-mess">
                                     <span className="textAlert">Lời nhắn : </span>{detailRequest.mess}
+                                </div>
+                                <div className="request-list-detail-button">
+                                    <div/>
+                                    <div className="request-list-detail-button-item color4 borderradius hover-button"
+                                    onClick={showModal}>Hủy</div>
+                                    <div className="request-list-detail-button-item color5 borderradius hover-button"
+                                    onClick={() => {setUseModal(2)}}>Đặt lịch</div>
                                 </div>
                             </>
                         )

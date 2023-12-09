@@ -64,7 +64,7 @@ export default function Mainpage() {
             <div className="mainpage-line"/>
             <div className="footer">
                 <div className="footer-ìnfo color3 borderradius boxshadow-inset">
-                    <div className="footer-info-avata"/>
+                    <div className="footer-info-avata dropshadow"/>
                     <div className="footer-ìnfo-quote">
                         "Innovation is not about saying 'yes' to everything.<br/>
                         It's about saying 'no' to all but the most crucial features."

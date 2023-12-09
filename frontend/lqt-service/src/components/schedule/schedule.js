@@ -2,7 +2,7 @@ import "./schedule.css"
 import {useEffect, useRef, useState} from "react";
 import {getHourMinute, reduceLengthName, sameDate} from "../../service/formatData";
 import {getRequestByMonthYear} from "../../service/ApiConnection";
-export function Schedule() {
+export function Schedule({useModal}) {
     const [today, setToday] = useState(new Date());
     const [selectDay, setSelectDay] = useState();
     const displayTime = useRef();
@@ -48,7 +48,6 @@ export function Schedule() {
             let day = selectDay.getDate() + "";
             let data = schedule[day];
             setScheduleOnDay(data);
-            console.log(data)
         }
     }
     useEffect(() => {
@@ -58,7 +57,7 @@ export function Schedule() {
     useEffect(() => {
         updateDate();
         updateSchedule();
-    }, [offset])
+    }, [offset,useModal])
 
     return (
         <div className="schedule">
@@ -68,15 +67,15 @@ export function Schedule() {
                     <div className="schedule-calendar-detail-button-back-container">
                         <div className="schedule-calendar-detail-button-back color0"
                              onClick={() => {setOffset(offset - 1)}}
-                        title="Tháng trước"/>
+                             title="Tháng trước"/>
                     </div>
                     <div className="schedule-calendar-detail-button-current boxshadow-outset color0"
-                    onClick={() => {setOffset(0)}}
-                    title="Quay lại thời gian hiện tại"/>
+                         onClick={() => {setOffset(0)}}
+                         title="Quay lại thời gian hiện tại"/>
                     <div className="schedule-calendar-detail-button-next-container">
                         <div className="schedule-calendar-detail-button-next color0"
                              onClick={() => {setOffset(offset + 1)}}
-                        title="Tháng sau"/>
+                             title="Tháng sau"/>
                     </div>
                     <div className="schedule-calendar-detail-content-header">
                         <div>T2</div>
@@ -97,26 +96,26 @@ export function Schedule() {
                                 } else {
                                     return (
                                         schedule ?
-                                        <div
-                                            className={`detail-day cursorPoint 
+                                            <div
+                                                className={`detail-day cursorPoint 
                                             ${sameDate(e, today) ? "detail-day-today" : ""}
                                             ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
-                                            onClick={() => {setSelectDay(e)}}
-                                        >
-                                            {e.getDate()}
+                                                onClick={() => {setSelectDay(e)}}
+                                            >
+                                                {e.getDate()}
                                                 {schedule[e.getDate()] &&
-                                                        <span className="detail-day-alert color1">
+                                                    <span className="detail-day-alert color1">
                                                         {schedule[e.getDate()].length}
                                                         </span>
                                                 }
-                                        </div>
+                                            </div>
                                             :
-                                        <div
-                                            className={`detail-day cursorPoint 
+                                            <div
+                                                className={`detail-day cursorPoint 
                                         ${sameDate(e, today) ? "detail-day-today" : ""}
                                         ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
-                                            onClick={() => {setSelectDay(e)}}
-                                        >{e.getDate()}</div>
+                                                onClick={() => {setSelectDay(e)}}
+                                            >{e.getDate()}</div>
 
                                     )
                                 }

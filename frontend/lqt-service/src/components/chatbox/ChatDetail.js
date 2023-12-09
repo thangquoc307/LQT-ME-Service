@@ -1,7 +1,7 @@
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import {useEffect, useRef, useState} from "react";
-import {IdByNow} from "../../service/formatData";
+import {getDate, IdByNow} from "../../service/formatData";
 import {
     database,
     getDownloadURL,
@@ -20,6 +20,7 @@ export function ChatDetail({accountId}) {
     const [content, setContent] = useState();
     const inputImgRef = useRef();
     const buttonArea = useRef();
+    const display = useRef();
 
     const pushMessRealTime = async (type, text) => {
         const path = "mess/mess-" + accountId;
@@ -33,6 +34,7 @@ export function ChatDetail({accountId}) {
             type: type,
             release: new Date() + ""
         })
+        scrollToBottom();
     }
     const hiddenButton = (e) => {
         let str = e.target.value;
@@ -43,16 +45,17 @@ export function ChatDetail({accountId}) {
             setTyping(true);
         }
     }
-    const enterButton = async (key) => {
+    const enterButton = (key) => {
         if (key == "Enter") {
-            await handleSendMessage();
-            setShowEmoji(false);
-            setInputMess("");
-            setTyping(false);
+            handleSendMessage();
+
         }
     }
     const handleSendMessage = () => {
         pushMessRealTime("text", inputMess);
+        setShowEmoji(false);
+        setInputMess("");
+        setTyping(false);
     }
     const handlePickEmoji = (emoji) => {
         setInputMess(inputMess + emoji.native);
@@ -89,6 +92,12 @@ export function ChatDetail({accountId}) {
         });
     }
 
+    const scrollToBottom = () => {
+        if (display.current) {
+            display.current.scrollTop = display.current.scrollHeight;
+        }
+    };
+
     useEffect(() => {
         scaleInput();
     },[typing])
@@ -98,18 +107,25 @@ export function ChatDetail({accountId}) {
 
     return (
         <>
-            <div className="chatbox-detail-display borderradius color0 boxshadow-inset">
+            <div className="chatbox-detail-display borderradius color0 boxshadow-inset" ref={display}>
                 {content &&
                     content.map(e => {
                         return (
                             <div key={e.id} className={`chat ${e.adminSend ? "chatme" : "chatyou"}`}>
                                 {
                                     e.type == "text" &&
-                                    <p className={`chattext borderradius ${e.adminSend ? "color3" : "color2"}`}>
+                                    <p className={`chattext borderradius ${e.adminSend ? "color3" : "color2"}`}
+                                       title={getDate(e.release)}
+                                    >
                                         {e.content}
                                     </p>
                                 }
-
+                                {
+                                    e.type == "img" &&
+                                    <img className={`chatpicture borderradius`} src={e.content}
+                                         title={getDate(e.release)}
+                                    />
+                                }
                             </div>
                         )
                     })
@@ -134,7 +150,9 @@ export function ChatDetail({accountId}) {
                     onKeyDown={(e) => {enterButton(e.key)}}
                     value={inputMess}
                 />
-                <div className="chatbox-detail-button-send color0" title="Gửi tin nhắn"/>
+                <div className="chatbox-detail-button-send color0" title="Gửi tin nhắn"
+                     onClick={handleSendMessage}
+                />
             </div>
 
             {showEmoji &&

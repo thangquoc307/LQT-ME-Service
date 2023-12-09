@@ -41,6 +41,9 @@
 .boxshadow-outset{
   box-shadow: 10px 10px 20px #151018;
 }
+.dropshadow {
+  filter: drop-shadow(10px 10px 20px #151018);
+}
 .cursorPoint{
   cursor: pointer;
 }

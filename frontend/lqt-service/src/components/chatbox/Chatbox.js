@@ -4,7 +4,8 @@ import {ChatDetail} from "./ChatDetail";
 import {useEffect, useState} from "react";
 export default function Chatbox({selectLevel,selectRoom,currentCustomer}) {
     const [accountId, setAccountId] = useState();
-    const getAccountId = () => {
+    const getAccountId = async () => {
+        await setAccountId(null);
         if (currentCustomer){
             setAccountId(currentCustomer.id);
         } else {

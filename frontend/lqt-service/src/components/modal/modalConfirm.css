@@ -1,0 +1,112 @@
+:root{
+    --widthModal : 500px;
+    --widthPop: 650px;
+}
+.modal-comfirm {
+    position: fixed;
+    width: var(--widthModal);
+    aspect-ratio: 2/1;
+    z-index: 1000;
+    left: calc((100% - var(--widthModal)) / 2 );
+    background-color: rgba(21, 16, 24, 0.9);
+    display: grid;
+    padding: var(--offset);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 50px;
+    grid-template-areas: "content content" "cancel confirm";
+    top: 100px;
+}
+.modal-comfirm-content {
+    grid-area: content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-comfirm-content p {
+    color: white;
+    text-align: center;
+}
+.modal-comfirm-content span {
+    margin: 5px;
+    font-size: 20px;
+}
+
+.modal-comfirm-cancel {
+    grid-area: cancel;
+    margin-left: calc(100% - 10px - 175px);
+}
+.modal-comfirm-confirm {
+    grid-area: confirm;
+    margin-left: 10px;
+}
+.modal-comfirm-confirm, .modal-comfirm-cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 175px;
+    height: 35px;
+    transition-duration: 0.2s;
+}
+.modal-comfirm-confirm:hover, .modal-comfirm-cancel:hover {
+    scale: 1.05;
+    transition-duration: 0.2s;
+}
+.modal-schedule {
+    position: fixed;
+    width: var(--widthPop);
+    z-index: 1000;
+    left: calc((100% - var(--widthPop)) / 2 );
+    background-color: rgba(21, 16, 24, 0.9);
+    display: grid;
+    padding: var(--offset);
+    top: 100px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 30px 200px 50px;
+    grid-template-areas: "content content" "title title" "mess mess" "cancel confirm";
+}
+.modal-schedule-content-input, .modal-schedule-content-select {
+    color: white;
+    background: none;
+    border: white 1px dashed;
+    padding: 5px 15px;
+    height: 40px;
+}
+.modal-schedule-content-div {
+    color: white;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+.modal-schedule-content {
+    padding: var(--offset);
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 40px) repeat(2,75px);
+}
+.modal-schedule-content span {
+    margin: 5px;
+}
+.modal-schedule-content-mess {
+    overflow: auto;
+    border: white 1px dashed;
+    padding: var(--offset);
+    color: white;
+    grid-area: mess;
+    margin: 0 var(--offset);
+    width: calc(100% - 2 * var(--offset));
+    height: calc(100% - var(--offset));
+}
+.modal-schedule-content-title {
+    grid-area: title;
+    color: white;
+}
+.modal-schedule-content-field {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+.modal-schedule-content-field small {
+    color: #c1151a;
+    text-align: center;
+
+}

@@ -32,3 +32,27 @@ export const getRequestHolding = async () => {
         console.log(e);
     }
 }
+export const deleteRequest = async (id) => {
+    try {
+        const res = await axios.delete(`http://localhost:8080/api/request/${id}`)
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const getEmployeeList = async () => {
+    try {
+        const res = await axios.get(`http://localhost:8080/api/employee`);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const confirmSchedule = async (schedule) => {
+    try {
+        const res = await axios.post(`http://localhost:8080/api/request`, schedule);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}

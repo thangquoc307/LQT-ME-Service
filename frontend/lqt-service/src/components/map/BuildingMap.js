@@ -1,6 +1,7 @@
 import "./building.css"
 import {getLocation, levelLocation} from "./dataLocation";
 import {formatNumberOverNine} from "../../service/formatData";
+import {useEffect} from "react";
 export default function BuildingMap({selectLevel, setSelectRoom, setSelectLevel}) {
     const mapLocation = levelLocation;
     const fakeData = [
@@ -105,53 +106,69 @@ export default function BuildingMap({selectLevel, setSelectRoom, setSelectLevel}
         document.getElementById(`poly-${index}`).style.fill = "";
         document.getElementById(`table-${index}`).style.backgroundColor = "";
     }
-    setSelectRoom(-1);
+    useEffect(() => {
+        setSelectRoom(-1);
+    },[])
     return (
-        <div className="building-map color3 borderradius boxshadow-inset">
-            <svg className="building-map-svg"
-                 viewBox="0 0 100 100" preserveAspectRatio="none">
-                {mapLocation.map(e => {
-                    return (
-                        <polygon key={`level${e.level}`}
-                            id={`poly-${e.level}`}
-                            className="cursorPoint building-map-polygon"
-                            points={getLocation(e.point)}
-                            onClick={() => {setSelectLevel(e.level)}}
-                            onMouseOver={() => {mouseOver(e.level)}}
-                            onMouseLeave={() => {mouseLeave(e.level)}}
-                        />
-                    )
-                })}
-            </svg>
-            <div className="level-notification color0 borderradius boxshadow-inset">
-                {
-                    fakeData.map((e, index) => {
+        <div className="color3 borderradius boxshadow-inset">
+            <div className="building-map dropshadow">
+                <svg className="building-map-svg"
+                     viewBox="0 0 100 100" preserveAspectRatio="none">
+                    {mapLocation.map(e => {
                         return (
-                            <div className="level-notification-item cursorPoint"
-                                 id={`table-${e.level}`}
-                                 onMouseOver={() => {mouseOver(e.level)}}
-                                 onMouseLeave={() => {mouseLeave(e.level)}}
-                                 onClick={() => {setSelectLevel(e.level)}}
-                            >
-                                <div className="level-notification-item-key">
-                                    <div className="level-notification-item-key-name color4 borderradius">
-                                        L{e.level}
+                            <polygon key={`level${e.level}`}
+                                     id={`poly-${e.level}`}
+                                     className="cursorPoint building-map-polygon"
+                                     points={getLocation(e.point)}
+                                     onClick={() => {setSelectLevel(e.level)}}
+                                     onMouseOver={() => {mouseOver(e.level)}}
+                                     onMouseLeave={() => {mouseLeave(e.level)}}
+                            />
+                        )
+                    })}
+                </svg>
+                <div className="level-notification color0 borderradius boxshadow-inset">
+                    {
+                        fakeData.map((e, index) => {
+                            return (
+                                <div className="level-notification-item cursorPoint"
+                                     id={`table-${e.level}`}
+                                     onMouseOver={() => {mouseOver(e.level)}}
+                                     onMouseLeave={() => {mouseLeave(e.level)}}
+                                     onClick={() => {setSelectLevel(e.level)}}
+                                >
+                                    <div className="level-notification-item-key">
+                                        <div className="level-notification-item-key-name color4 borderradius">
+                                            L{e.level}
+                                        </div>
+                                    </div>
+                                    <div className="level-notification-item-mess">
+                                        {e.message != 0 &&
+                                            <span className="notification-number">
+                                            {formatNumberOverNine(e.message)}
+                                        </span>
+                                        }
+                                    </div>
+                                    <div className="level-notification-item-request">
+                                        {e.request != 0 &&
+                                            <span className="notification-number">
+                                            {formatNumberOverNine(e.request)}
+                                        </span>
+                                        }
+                                    </div>
+                                    <div className="level-notification-item-hold">
+                                        {e.waiting != 0 &&
+                                            <span className="notification-number">
+                                            {formatNumberOverNine(e.waiting)}
+                                        </span>
+                                        }
                                     </div>
                                 </div>
-                                <div className="level-notification-item-mess">
-                                    {e.message != 0 && <span className="notification-number">{formatNumberOverNine(e.message)}</span>}
-                                </div>
-                                <div className="level-notification-item-request">
-                                    {e.request != 0 && <span className="notification-number">{formatNumberOverNine(e.request)}</span>}
-                                </div>
-                                <div className="level-notification-item-hold">
-                                    {e.waiting != 0 && <span className="notification-number">{formatNumberOverNine(e.waiting)}</span>}
-                                </div>
-                            </div>
 
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                </div>
             </div>
         </div>
     )

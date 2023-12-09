@@ -8,43 +8,45 @@ export default function DetailLevel({selectLevel,setSelectLevel, selectRoom, set
     }
 
     return (
-        <div className="detail-level color3 borderradius boxshadow-inset">
-            <svg className="building-map-svg"
-                 viewBox="0 0 100 100" preserveAspectRatio="none">
+        <div className="color3 borderradius boxshadow-inset">
+            <div className="detail-level dropshadow">
+                <svg className="building-map-svg"
+                     viewBox="0 0 100 100" preserveAspectRatio="none">
+                    {mapLocation.map(e => {
+                        return (
+                            <polygon className={`cursorPoint 
+                        ${selectRoom == e.name ? "polygon-select" : "polygon-nonselect"}`}
+                                     points={getLocation(e.point)}
+                                     onClick={() => {refreshRoom(e.name)}}
+                            />
+
+                        )
+                    })}
+                </svg>
                 {mapLocation.map(e => {
                     return (
-                        <polygon className={`cursorPoint 
-                        ${selectRoom == e.name ? "polygon-select" : "polygon-nonselect"}`}
-                                 points={getLocation(e.point)}
-                                 onClick={() => {refreshRoom(e.name)}}
-                        />
-
+                        <div className="detail-level-notification cursorPoint"
+                             style={{
+                                 top: `${getAvgY(e.point)}%`,
+                                 left: `${getAvgX(e.point)}%`
+                             }}>
+                            <div className="level-notification-item-mess">
+                                <span className="detail-level-notification-number">+9</span>
+                            </div>
+                            <div className="level-notification-item-request">
+                                <span className="detail-level-notification-number">1</span>
+                            </div>
+                            <div className="level-notification-item-hold">
+                                <span className="detail-level-notification-number">2</span>
+                            </div>
+                        </div>
                     )
                 })}
-            </svg>
-            {mapLocation.map(e => {
-                return (
-                    <div className="detail-level-notification cursorPoint"
-                         style={{
-                            top: `${getAvgY(e.point)}%`,
-                            left: `${getAvgX(e.point)}%`
-                        }}>
-                        <div className="level-notification-item-mess">
-                            <span className="detail-level-notification-number">+9</span>
-                        </div>
-                        <div className="level-notification-item-request">
-                            <span className="detail-level-notification-number">1</span>
-                        </div>
-                        <div className="level-notification-item-hold">
-                            <span className="detail-level-notification-number">2</span>
-                        </div>
-                    </div>
-                )
-            })}
-            <div className="detail-level-back color4 hover-button borderradius"
-            onClick={() => {setSelectLevel(-1)}}>Trở lại</div>
-            <div className="detail-level-title color0 borderradius boxshadow-inset"
-            >Tầng {selectLevel}</div>
+                <div className="detail-level-back color4 hover-button borderradius"
+                     onClick={() => {setSelectLevel(-1)}}>Trở lại</div>
+                <div className="detail-level-title color0 borderradius boxshadow-inset"
+                >Tầng {selectLevel}</div>
+            </div>
         </div>
     )
 }

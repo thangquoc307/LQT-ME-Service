@@ -66,6 +66,8 @@
     flex-direction: column-reverse;
     padding: var(--offset);
     overflow: auto;
+    border: #151018 1px solid;
+
 }
 .chatbox-detail-button {
     grid-area: button;
@@ -138,4 +140,15 @@
     max-width: 200px;
     padding: 10px;
     margin: 0;
+    border: #151018 1px solid;
+    cursor: default;
+}
+.chatpicture {
+    width: 200px;
+    border: #151018 1px solid;
+    transition-duration: 0.2s;
+}
+.chatpicture:hover, .chattext:hover {
+    scale: 1.03;
+    transition-duration: 0.2s;
 }
