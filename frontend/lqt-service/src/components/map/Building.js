@@ -1,20 +1,14 @@
 import BuildingMap from "./BuildingMap";
 import DetailLevel from "./DetailLevel";
+import {useSelector} from "react-redux";
 
-export default function Building({selectRoom, setSelectRoom, selectLevel, setSelectLevel}) {
+export default function Building() {
+    const room = useSelector(state => state.room);
+    const level = useSelector(state => state.level);
     return (
         <div className="buiding">
-            {selectLevel == -1 && <BuildingMap
-                selectLevel={selectLevel}
-                setSelectRoom={setSelectRoom}
-                setSelectLevel={setSelectLevel}
-            />}
-            {selectLevel != -1 && <DetailLevel
-                selectLevel={selectLevel}
-                selectRoom={selectRoom}
-                setSelectRoom={setSelectRoom}
-                setSelectLevel={setSelectLevel}
-            />}
+            {level == -1 && <BuildingMap/>}
+            {level != -1 && <DetailLevel/>}
         </div>
 
     )

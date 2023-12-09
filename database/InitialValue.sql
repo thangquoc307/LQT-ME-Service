@@ -286,7 +286,8 @@ values
 insert into `request_status` (`name`)
 values
 	("Đã đặt lịch"),
-	("Đang chờ duyệt");
+	("Đang chờ duyệt"),
+	("Đã hoàn thành");
 insert into `requests` (`time_order`,`time_request`,`customer_id`,`employee_id`,`request_status_id`,`room_id`,`mess`)
 values
 	('2023-12-28 8:28:00', '2023-12-15 3:57:04', 3, 4, 2, 20, 'nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in'),

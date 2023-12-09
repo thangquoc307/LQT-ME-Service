@@ -28,7 +28,6 @@
     transition-duration: 0.2s;
     stroke-width: 0.2px;
 }
-
 .polygon-nonselect:hover {
     fill: rgba(255, 255, 255, 0.8);
     transition-duration: 0.2s;
@@ -56,7 +55,7 @@
     position: absolute;
     right: var(--offset);
     bottom: var(--offset);
-    width: 220px;
+    width: 180px;
     height: 80%;
     display: grid;
     grid-template-rows: repeat(15, 1fr);
@@ -64,7 +63,7 @@
 }
 .level-notification-item {
     display: grid;
-    grid-template-columns: 70px repeat(3, 1fr);
+    grid-template-columns: 1fr repeat(2, 40px);
     padding: 0 var(--offset);
 }
 .level-notification-item-key {
@@ -81,16 +80,13 @@
     justify-content: center;
     align-items: center;
 }
-.level-notification-item-mess {
-    background-image: url("../../image/icon/mess.png");
-}
 .level-notification-item-request {
     background-image: url("../../image/icon/request.png");
 }
 .level-notification-item-hold {
     background-image: url("../../image/icon/calendar.png");
 }
-.level-notification-item-mess, .level-notification-item-request, .level-notification-item-hold {
+.level-notification-item-request, .level-notification-item-hold {
     height: 100%;
     width: 85%;
     margin: 0 10%;
@@ -100,6 +96,7 @@
 }
 .notification-number {
     background-color: #c1151a;
+    position: absolute;
     color: white;
     display: flex;
     width: 25px;
@@ -107,7 +104,7 @@
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    transform: translateX(25%) translateY(10%);
+    transform: translateX(20px);
     font-size: 12px;
 }
 .detail-level-title {
@@ -121,15 +118,20 @@
     left: calc((100% - 200px ) / 2);
 }
 .detail-level-notification {
-    width: 100px;
+    width: 120px;
     height: 30px;
     position: absolute;
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.5);
     transform: translateX(-50px) translateY(-15px);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 50px repeat(2, 1fr);
     padding: 5px;
+}
+.detail-level-notification p {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
 }
 .detail-level-notification-number {
     background-color: #c1151a;

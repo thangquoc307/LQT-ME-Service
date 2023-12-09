@@ -18,7 +18,7 @@ export default function ModalSetupSchedule({setUseModal,request,setSelectRequest
         if (data.status == 200) {
             toast.success("Đăng ký lịch thành công");
             setSelectRequest(-1);
-            setUseModal(0);
+            setUseModal(-1);
         } else {
             toast.warn("Đăng ký lịch không thành công");
         }
@@ -100,7 +100,7 @@ export default function ModalSetupSchedule({setUseModal,request,setSelectRequest
                     <div className="modal-schedule-content-mess borderradius">{request.mess}</div>
 
                     <div className="modal-comfirm-cancel cursorPoint color4 borderradius hover-button"
-                         onClick={() => {setUseModal(0)}}
+                         onClick={() => {setUseModal(-1)}}
                     >Hủy</div>
                     <button
                         className="modal-comfirm-confirm cursorPoint color1 borderradius hover-button"

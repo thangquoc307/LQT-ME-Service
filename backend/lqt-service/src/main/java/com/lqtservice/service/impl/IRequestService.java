@@ -11,4 +11,5 @@ public interface IRequestService {
     void deleteRequest(Integer id);
     Request getRequestById(Integer id);
     void confirmRequest(RequestDto requestDto);
+    List<Request> getRequestByRoom(String room);
 }

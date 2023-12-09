@@ -46,4 +46,13 @@ public interface IRequestRepository extends JpaRepository<Request, Integer> {
     void confirmRequest(@Param("id") Integer id,
                         @Param("employeeId") Integer employeeId,
                         @Param("timeOrder")LocalDateTime timeOrder);
+    @Query(nativeQuery = true,
+            value = "select requests.* " +
+                    "from requests " +
+                    "inner join rooms on rooms.id = requests.room_id " +
+                    "where rooms.name = :room " +
+                    "and requests.is_deleted = 0 " +
+                    "and requests.request_status_id = 2 " +
+                    "order by requests.time_request")
+    List<Request> getRequestByRoom(@Param("room") String room);
 }

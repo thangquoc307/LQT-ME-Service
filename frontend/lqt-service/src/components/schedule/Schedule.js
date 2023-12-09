@@ -2,7 +2,8 @@ import "./schedule.css"
 import {useEffect, useRef, useState} from "react";
 import {getHourMinute, reduceLengthName, sameDate} from "../../service/formatData";
 import {getRequestByMonthYear} from "../../service/ApiConnection";
-export function Schedule({useModal}) {
+import {useSelector} from "react-redux";
+export function Schedule() {
     const [today, setToday] = useState(new Date());
     const [selectDay, setSelectDay] = useState();
     const displayTime = useRef();
@@ -11,6 +12,7 @@ export function Schedule({useModal}) {
     const [offset, setOffset] = useState(0);
     const [schedule, setSchedule] = useState();
     const [scheduleOnDay, setScheduleOnDay] = useState();
+    const useModal = useSelector(state => state.modal)
 
     const updateDate = async () => {
         let time = new Date(today.getFullYear(), today.getMonth() + offset, today.getDate());
@@ -40,7 +42,6 @@ export function Schedule({useModal}) {
         let month = time.getMonth() + 1;
         let year = time.getFullYear();
         let data = await getRequestByMonthYear(month, year);
-
         setSchedule(data);
     }
     const chooseScheduleDay = () => {
@@ -52,7 +53,7 @@ export function Schedule({useModal}) {
     }
     useEffect(() => {
         chooseScheduleDay();
-    }, [selectDay])
+    }, [selectDay,useModal])
 
     useEffect(() => {
         updateDate();
@@ -91,16 +92,16 @@ export function Schedule({useModal}) {
                             arrayDay.map((e) => {
                                 if (e == ""){
                                     return (
-                                        <div/>
+                                        <div key={e.id}/>
                                     )
                                 } else {
                                     return (
                                         schedule ?
-                                            <div
-                                                className={`detail-day cursorPoint 
-                                            ${sameDate(e, today) ? "detail-day-today" : ""}
-                                            ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
-                                                onClick={() => {setSelectDay(e)}}
+                                            <div className={`detail-day cursorPoint 
+                                                    ${sameDate(e, today) ? "detail-day-today" : ""}
+                                                    ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
+                                                    onClick={() => {setSelectDay(e)}}
+                                                 key={e.id}
                                             >
                                                 {e.getDate()}
                                                 {schedule[e.getDate()] &&
@@ -110,12 +111,14 @@ export function Schedule({useModal}) {
                                                 }
                                             </div>
                                             :
-                                            <div
-                                                className={`detail-day cursorPoint 
-                                        ${sameDate(e, today) ? "detail-day-today" : ""}
-                                        ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
-                                                onClick={() => {setSelectDay(e)}}
-                                            >{e.getDate()}</div>
+                                            <div className={`detail-day cursorPoint 
+                                                    ${sameDate(e, today) ? "detail-day-today" : ""}
+                                                    ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
+                                                    onClick={() => {setSelectDay(e)}}
+                                                 key={e.id}
+                                            >
+                                                {e.getDate()}
+                                            </div>
 
                                     )
                                 }
@@ -131,7 +134,9 @@ export function Schedule({useModal}) {
                             {
                                 scheduleOnDay.map(e => {
                                     return (
-                                        <div className="schedule-detail-has-item cursorPoint">
+                                        <div className="schedule-detail-has-item cursorPoint"
+                                             key={e.id}
+                                        >
                                             <p>{getHourMinute(e.timeOrder)} - P{e.room.name}</p><br/>
                                             <p>KH: {reduceLengthName(e.customer.name, 20)}</p>
                                             <p>- SDT : {e.customer.phone}</p>

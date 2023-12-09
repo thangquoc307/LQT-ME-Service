@@ -1,22 +1,28 @@
 import "./requestManage.css"
 import {useEffect, useState} from "react";
-import {deleteRequest, getRequestHolding} from "../../service/ApiConnection";
-import {getDate, reduceLengthName} from "../../service/formatData";
+import {deleteRequest, getRequestHolding, getRequestHoldingByRoom} from "../../service/ApiConnection";
+import {convertRoom, getDate, reduceLengthName} from "../../service/formatData";
 import ModalConfirm from "../modal/ModalConfirm";
 import {toast} from "react-toastify";
 import ModalSetupSchedule from "../modal/ModalSetupSchedule";
-export default function RequestManage({useModal, setUseModal}) {
+import {store} from "../../redux/store";
+import {selectChatCustomer, setModalType} from "../../redux/action";
+import {useSelector} from "react-redux";
+export default function RequestManage() {
     const [requestList, setRequestList] = useState();
     const [selectRequest, setSelectRequest] = useState(-1);
     const [detailRequest, setDetailRequest] = useState();
     const [contentModal, setContentModal] = useState();
+    const modal = useSelector(state => state.modal);
+    const level = useSelector(state => state.level);
+    const room = useSelector(state => state.room);
     const showModal = () => {
         setContentModal(
             `<p>Bạn muốn hủy yêu cầu từ<br/>
                    <span class="textAlert"> ${detailRequest.customer.name} </span>
                    phòng <span class="textAlert"> ${detailRequest.room.name} ?</span></p>`
         )
-        setUseModal(1);
+        setModal(1);
     }
     const handleConfirm = async () => {
         const data = await deleteRequest(detailRequest.id);
@@ -24,21 +30,34 @@ export default function RequestManage({useModal, setUseModal}) {
         if (data.status == 200) {
             toast.success("Hủy yêu cầu thành công");
             setSelectRequest(-1);
-            setUseModal(0);
+            setModal(-1);
         } else {
             toast.warn("Hủy yêu cầu không thành công");
         }
     }
     const getRequestList = async () => {
-        const data = await getRequestHolding();
-        setRequestList(data);
+        if (level != -1 && room != -1) {
+            const data = await getRequestHoldingByRoom(convertRoom(level, room));
+            setRequestList(data);
+            setSelectRequest(-1);
+        } else {
+            const data = await getRequestHolding();
+            setRequestList(data);
+            setSelectRequest(-1);
+        }
     }
     const getDetail = () => {
         setDetailRequest(requestList[selectRequest]);
     }
+    const chatWithCustomer = (e) => {
+        store.dispatch(selectChatCustomer(e))
+    }
+    const setModal = (index) => {
+        store.dispatch(setModalType(index));
+    }
     useEffect(() => {
         getRequestList();
-    }, [useModal])
+    }, [modal, room])
     useEffect(() => {
         if (selectRequest != -1){
             getDetail();
@@ -48,16 +67,16 @@ export default function RequestManage({useModal, setUseModal}) {
     }, [selectRequest])
     return (
         <div className="request">
-            {useModal == 2 &&
+            {modal == 2 &&
                 <ModalSetupSchedule
                     request={detailRequest}
-                    setUseModal={setUseModal}
+                    setUseModal={setModal}
                     setSelectRequest={setSelectRequest}
                 />
             }
-            {useModal == 1 &&
+            {modal == 1 &&
                 <ModalConfirm
-                    setUseModal={setUseModal}
+                    setUseModal={setModal}
                     content={contentModal}
                     confirmAction={handleConfirm}
                 />
@@ -77,7 +96,6 @@ export default function RequestManage({useModal, setUseModal}) {
                                 </div>
                             )
                         })
-
                     }
                 </div>
                 <div className="request-list-detail">
@@ -95,7 +113,9 @@ export default function RequestManage({useModal, setUseModal}) {
                                         <span className="textAlert">- Thời gian hẹn :  </span>
                                         {getDate(detailRequest.timeOrder)}</p>
                                 </div>
-                                <div className="request-list-detail-info color3">
+                                <div className="request-list-detail-info color3 cursorPoint"
+                                     onClick={() => {chatWithCustomer(detailRequest.customer.id)}}
+                                >
                                     <div className="request-list-detail-info-avatar"
                                          style={{backgroundImage: `url("${detailRequest.customer.account.avatar}")`}}
                                     />
@@ -117,7 +137,7 @@ export default function RequestManage({useModal, setUseModal}) {
                                     <div className="request-list-detail-button-item color4 borderradius hover-button"
                                     onClick={showModal}>Hủy</div>
                                     <div className="request-list-detail-button-item color5 borderradius hover-button"
-                                    onClick={() => {setUseModal(2)}}>Đặt lịch</div>
+                                    onClick={() => {setModal(2)}}>Đặt lịch</div>
                                 </div>
                             </>
                         )

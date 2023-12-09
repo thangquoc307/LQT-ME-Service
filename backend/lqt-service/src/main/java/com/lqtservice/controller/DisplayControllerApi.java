@@ -1,8 +1,10 @@
 package com.lqtservice.controller;
 
+import com.lqtservice.model.Customer;
 import com.lqtservice.model.Employee;
 import com.lqtservice.model.Request;
 import com.lqtservice.model.Room;
+import com.lqtservice.service.impl.ICustomerService;
 import com.lqtservice.service.impl.IEmployeeService;
 import com.lqtservice.service.impl.IRequestService;
 import com.lqtservice.service.impl.IRoomService;
@@ -27,6 +29,8 @@ public class DisplayControllerApi {
     private IRequestService requestService;
     @Autowired
     private IEmployeeService employeeService;
+    @Autowired
+    private ICustomerService customerService;
     @GetMapping("all_room")
     public ResponseEntity<List<Room>> getAllRoom(){
         List<Room> roomList = roomService.getAllRoom();
@@ -75,13 +79,32 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(requests, HttpStatus.OK);
         }
     }
+    @GetMapping("request/{room}")
+    public ResponseEntity<List<Request>> getRequestHolding(
+            @PathVariable String room){
+        List<Request> requests = requestService.getRequestByRoom(room);
+        if (requests.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(requests, HttpStatus.OK);
+        }
+    }
     @GetMapping("employee")
-    public ResponseEntity<List<Employee>> getEmployee(){
+    public ResponseEntity<List<Employee>> getAllEmployee(){
         List<Employee> employees = employeeService.getAllEmployee();
         if (employees.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(employees, HttpStatus.OK);
+        }
+    }
+    @GetMapping("customer/{id}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id){
+        Customer customer = customerService.getCustomerById(id);
+        if (customer == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(customer, HttpStatus.OK);
         }
     }
 }

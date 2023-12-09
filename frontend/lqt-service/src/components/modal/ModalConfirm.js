@@ -7,7 +7,7 @@ export default function ModalConfirm({content, setUseModal, confirmAction}) {
         <div className="modal-comfirm borderradius boxshadow-outset">
             <div className="modal-comfirm-content" dangerouslySetInnerHTML={{ __html: content }}/>
             <div className="modal-comfirm-cancel color4 borderradius cursorPoint hover-button"
-                 onClick={() => {setUseModal(0)}}
+                 onClick={() => {setUseModal(-1)}}
             >
                 Hủy bỏ
             </div>

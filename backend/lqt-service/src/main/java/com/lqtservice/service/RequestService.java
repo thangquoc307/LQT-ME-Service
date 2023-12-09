@@ -38,4 +38,9 @@ public class RequestService implements IRequestService {
     public void confirmRequest(RequestDto requestDto) {
         requestRepository.confirmRequest(requestDto.getId(), requestDto.getEmployeeId(), requestDto.getTimeOrder());
     }
+
+    @Override
+    public List<Request> getRequestByRoom(String room) {
+        return requestRepository.getRequestByRoom(room);
+    }
 }

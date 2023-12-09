@@ -1,50 +1,43 @@
 import "./chatbox.css"
-import {convertRoom, reduceLengthName} from "../../service/formatData";
+import {reduceLengthName} from "../../service/formatData";
 import {ChatDetail} from "./ChatDetail";
 import {useEffect, useState} from "react";
-export default function Chatbox({selectLevel,selectRoom,currentCustomer}) {
-    const [accountId, setAccountId] = useState();
-    const getAccountId = async () => {
-        await setAccountId(null);
-        if (currentCustomer){
-            setAccountId(currentCustomer.id);
-        } else {
-            setAccountId(null);
-        }
+import {useSelector} from "react-redux";
+import {getCustomerById} from "../../service/ApiConnection";
+export default function Chatbox() {
+    const [user, setUser] = useState();
+    const customerId = useSelector(state => state.chatCustomer);
+    const getUserChat = async () => {
+        const data = await getCustomerById(customerId);
+        setUser(data);
     }
     useEffect(() => {
-        getAccountId();
-    },[currentCustomer])
-
+        if (customerId != -1) {
+            getUserChat();
+        }
+    },[customerId])
     return (
         <div className="chatbox">
             <div className="chatbox-info borderradius boxshadow-outset">
-                {currentCustomer && selectRoom != -1 ?
+                {user ?
                     <>
                     <div className="chatbox-info-name color5">
-                        {reduceLengthName(currentCustomer.name, 20)}
+                        {reduceLengthName(user.name, 20)}
                     </div>
                     <div className="chatbox-info-avatar">
                         <div className="chatbox-info-avatar-item color5"
-                        style={{backgroundImage: `url("${currentCustomer.account.avatar}")`}}/>
+                        style={{backgroundImage: `url("${user.account.avatar}")`}}/>
                     </div>
                     <div className="chatbox-info-info">
-                        <p>📧 {currentCustomer.account.email}</p>
-                        <p>📲 {currentCustomer.phone}</p>
-                    </div>
-                    <div className="chatbox-info-room">
-                        <div>
-                            <p>Phòng : {convertRoom(selectLevel, selectRoom)}</p>
-                            <p>Tầng : {selectLevel}</p>
-                        </div>
+                        <p>📧 {reduceLengthName(user.account.email, 15)}</p>
+                        <p>📲 {user.phone}</p>
                     </div>
                     </> : <div className="chatbox-info-empty"/>
                 }
             </div>
             <div className="chatbox-detail">
-                {accountId && <ChatDetail accountId={accountId}/>}
+                {user && <ChatDetail accountId={customerId}/>}
             </div>
         </div>
     )
-
 }

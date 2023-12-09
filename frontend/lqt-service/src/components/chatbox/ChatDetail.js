@@ -103,7 +103,7 @@ export function ChatDetail({accountId}) {
     },[typing])
     useEffect(() => {
         getDatabase();
-    }, [])
+    }, [accountId])
 
     return (
         <>
@@ -154,7 +154,6 @@ export function ChatDetail({accountId}) {
                      onClick={handleSendMessage}
                 />
             </div>
-
             {showEmoji &&
                 <div className="emoji">
                     <Picker

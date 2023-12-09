@@ -1,12 +1,19 @@
 import "./building.css"
 import {getAvgX, getAvgY, getLocation, roomLocation} from "./dataLocation";
-export default function DetailLevel({selectLevel,setSelectLevel, selectRoom, setSelectRoom}) {
+import {convertRoom} from "../../service/formatData";
+import {useSelector} from "react-redux";
+import {store} from "../../redux/store";
+import {setLevel, setRoom} from "../../redux/action";
+export default function DetailLevel() {
     const mapLocation = roomLocation;
-    const refreshRoom = async (room) => {
-        await setSelectRoom(-1);
-        await setSelectRoom(room);
+    const room = useSelector(state => state.room);
+    const level = useSelector(state => state.level);
+    const setSelectRoom = (index) => {
+        store.dispatch(setRoom(index));
     }
-
+    const setSelectLevel = (index) => {
+        store.dispatch(setLevel(index));
+    }
     return (
         <div className="color3 borderradius boxshadow-inset">
             <div className="detail-level dropshadow">
@@ -15,9 +22,9 @@ export default function DetailLevel({selectLevel,setSelectLevel, selectRoom, set
                     {mapLocation.map(e => {
                         return (
                             <polygon className={`cursorPoint 
-                        ${selectRoom == e.name ? "polygon-select" : "polygon-nonselect"}`}
+                        ${room == e.name ? "polygon-select" : "polygon-nonselect"}`}
                                      points={getLocation(e.point)}
-                                     onClick={() => {refreshRoom(e.name)}}
+                                     onClick={() => {setSelectRoom(e.name)}}
                             />
 
                         )
@@ -26,13 +33,12 @@ export default function DetailLevel({selectLevel,setSelectLevel, selectRoom, set
                 {mapLocation.map(e => {
                     return (
                         <div className="detail-level-notification cursorPoint"
+                             key={`noti-${e.id}`}
                              style={{
                                  top: `${getAvgY(e.point)}%`,
                                  left: `${getAvgX(e.point)}%`
                              }}>
-                            <div className="level-notification-item-mess">
-                                <span className="detail-level-notification-number">+9</span>
-                            </div>
+                            <p>P{convertRoom(level, e.name)}</p>
                             <div className="level-notification-item-request">
                                 <span className="detail-level-notification-number">1</span>
                             </div>
@@ -45,7 +51,7 @@ export default function DetailLevel({selectLevel,setSelectLevel, selectRoom, set
                 <div className="detail-level-back color4 hover-button borderradius"
                      onClick={() => {setSelectLevel(-1)}}>Trở lại</div>
                 <div className="detail-level-title color0 borderradius boxshadow-inset"
-                >Tầng {selectLevel}</div>
+                >Tầng {level}</div>
             </div>
         </div>
     )
