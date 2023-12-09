@@ -20,7 +20,7 @@ create table `customers`(
 	`id` int primary key auto_increment,
     `is_delete` bit(1) default 0,
     `account_id` int,
-    `phone_number` varchar(20),
+    `phone` varchar(20),
     `name` varchar(255),
     `birthday` date,
     `license_id_card` varchar(20),
@@ -30,7 +30,7 @@ create table `employees`(
 	`id` int primary key auto_increment,
     `is_delete` bit(1) default 0,
 	`account_id` int,
-    `phone_number` varchar(20),
+    `phone` varchar(20),
     `name` varchar(255),
     `birthday` date,
 	`license_id_card` varchar(20),
@@ -44,15 +44,6 @@ create table `rooms`(
     `level` int,
     `name` varchar(255),
     foreign key (`customer_id`) references `customers`(`id`)
-);
-create table `room_positions`(
-	`id` int primary key auto_increment,
-    `is_delete` bit(1) default 0,
-    `position_x` int,
-    `position_y` int,
-    `sequence` int,
-    `room_id` int,
-    foreign key (`room_id`) references `rooms`(`id`)
 );
 create table `message_types`(
 	`id` int primary key auto_increment,
@@ -98,6 +89,7 @@ create table `requests`(
     `employee_id` int,
     `customer_id` int,
     `room_id` int,
+    `mess` longtext,
 	foreign key (`employee_id`) references `employees`(`id`),
 	foreign key (`customer_id`) references `customers`(`id`),
 	foreign key (`request_status_id`) references `request_status`(`id`),
