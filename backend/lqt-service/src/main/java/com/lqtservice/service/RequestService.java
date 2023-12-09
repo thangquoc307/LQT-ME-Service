@@ -1,5 +1,6 @@
 package com.lqtservice.service;
 
+import com.lqtservice.dto.RequestDto;
 import com.lqtservice.model.Request;
 import com.lqtservice.repository.IRequestRepository;
 import com.lqtservice.service.impl.IRequestService;
@@ -21,5 +22,20 @@ public class RequestService implements IRequestService {
     @Override
     public List<Request> getAllRequestHolding() {
         return requestRepository.getAllRequestHolding();
+    }
+
+    @Override
+    public void deleteRequest(Integer id) {
+        requestRepository.deleteRequest(id);
+    }
+
+    @Override
+    public Request getRequestById(Integer id) {
+        return requestRepository.getRequestById(id);
+    }
+
+    @Override
+    public void confirmRequest(RequestDto requestDto) {
+        requestRepository.confirmRequest(requestDto.getId(), requestDto.getEmployeeId(), requestDto.getTimeOrder());
     }
 }
