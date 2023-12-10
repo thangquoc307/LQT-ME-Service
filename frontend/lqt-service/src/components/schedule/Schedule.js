@@ -1,8 +1,12 @@
 import "./schedule.css"
 import {useEffect, useRef, useState} from "react";
 import {getHourMinute, reduceLengthName, sameDate} from "../../service/formatData";
-import {getRequestByMonthYear} from "../../service/ApiConnection";
+import {deleteRequest, doneRequest, getRequestByMonthYear} from "../../service/ApiConnection";
 import {useSelector} from "react-redux";
+import ModalConfirm from "../modal/ModalConfirm";
+import {store} from "../../redux/store";
+import {setModalType} from "../../redux/action";
+import {toast} from "react-toastify";
 export function Schedule() {
     const [today, setToday] = useState(new Date());
     const [selectDay, setSelectDay] = useState();
@@ -12,8 +16,20 @@ export function Schedule() {
     const [offset, setOffset] = useState(0);
     const [schedule, setSchedule] = useState();
     const [scheduleOnDay, setScheduleOnDay] = useState();
-    const useModal = useSelector(state => state.modal)
-
+    const useModal = useSelector(state => state.modal);
+    const [contentModal, setContentModal] = useState();
+    const [idDone, setIdDone] = useState(-1);
+    const showModal = (e) => {
+        if (e.requestStatus.id == 1) {
+            setContentModal(
+                `<p>Xác nhận hoàn thành yêu cầu của khách hàng<br/>
+                   <span class="textAlert"> ${e.customer.name} </span>
+                   phòng <span class="textAlert"> ${e.room.name} ?</span></p>`
+            )
+            setModal(3);
+            setIdDone(e.id);
+        }
+    }
     const updateDate = async () => {
         let time = new Date(today.getFullYear(), today.getMonth() + offset, today.getDate());
         let date = time.getDate();
@@ -43,6 +59,10 @@ export function Schedule() {
         let year = time.getFullYear();
         let data = await getRequestByMonthYear(month, year);
         setSchedule(data);
+        if (selectDay){
+            let day = selectDay.getDate() + "";
+            setScheduleOnDay(data[day]);
+        }
     }
     const chooseScheduleDay = () => {
         if (selectDay){
@@ -51,14 +71,27 @@ export function Schedule() {
             setScheduleOnDay(data);
         }
     }
+    const handleConfirm = async () => {
+        const data = await doneRequest(idDone);
+        if (data.status == 200) {
+            toast.success("Xác nhận hoàn thành công việc thành công");
+            setModal(-1);
+            setIdDone(-1);
+        } else {
+            toast.warn("Xác nhận hoàn thành công việc không thành công");
+        }
+    }
+    const setModal = (index) => {
+        store.dispatch(setModalType(index));
+    }
     useEffect(() => {
         chooseScheduleDay();
-    }, [selectDay,useModal])
+    }, [selectDay])
 
     useEffect(() => {
         updateDate();
         updateSchedule();
-    }, [offset,useModal])
+    }, [offset, useModal])
 
     return (
         <div className="schedule">
@@ -134,10 +167,17 @@ export function Schedule() {
                             {
                                 scheduleOnDay.map(e => {
                                     return (
-                                        <div className="schedule-detail-has-item cursorPoint"
+                                        <div className={`schedule-detail-has-item 
+                                        ${e.requestStatus.id == 1 ? 
+                                            "schedule-detail-has-item-holding cursorPoint" :
+                                            "schedule-detail-has-item-done"}`}
                                              key={e.id}
+                                             onClick={() => {showModal(e)}}
                                         >
-                                            <p>{getHourMinute(e.timeOrder)} - P{e.room.name}</p><br/>
+                                            <p>
+                                                {e.requestStatus.id == 1 ? "⏱️" : "✔️"}
+                                                {getHourMinute(e.timeOrder)} - P{e.room.name}
+                                            </p><br/>
                                             <p>KH: {reduceLengthName(e.customer.name, 20)}</p>
                                             <p>- SDT : {e.customer.phone}</p>
                                             <p>NV: {reduceLengthName(e.employee.name, 20)}</p>
@@ -149,6 +189,13 @@ export function Schedule() {
                         </div> : <div className="schedule-detail-empty"/>
                 }
             </div>
+            {useModal == 3 &&
+                <ModalConfirm
+                    setUseModal={setModal}
+                    content={contentModal}
+                    confirmAction={handleConfirm}
+                />
+            }
         </div>
     )
 }

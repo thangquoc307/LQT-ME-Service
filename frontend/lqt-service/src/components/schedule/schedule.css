@@ -148,12 +148,15 @@
     border-top: #151018 1px solid;
     border-bottom: #151018 1px solid;
     transition-duration: 0.2s;
-
 }
 .schedule-detail-has-item p {
     margin: 0;
 }
-.schedule-detail-has-item:hover {
+.schedule-detail-has-item-done {
+    background-color: rgba(87, 84, 106, 0.48);
+
+}
+.schedule-detail-has-item-holding:hover {
     background-color: rgba(0, 128, 0, 0.3);
     transition-duration: 0.2s;
 }

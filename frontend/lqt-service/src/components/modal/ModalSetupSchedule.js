@@ -14,7 +14,6 @@ export default function ModalSetupSchedule({setUseModal,request,setSelectRequest
     }
     const handleSubmit = async (value) => {
         const data = await confirmSchedule(value);
-        console.log(data)
         if (data.status == 200) {
             toast.success("Đăng ký lịch thành công");
             setSelectRequest(-1);

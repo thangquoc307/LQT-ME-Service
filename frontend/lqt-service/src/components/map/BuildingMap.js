@@ -1,93 +1,17 @@
 import "./building.css"
 import {getLocation, levelLocation} from "./dataLocation";
 import {formatNumberOverNine} from "../../service/formatData";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {store} from "../../redux/store";
 import {setLevel, setRoom} from "../../redux/action";
+import {getCountOfRequest} from "../../service/ApiConnection";
 export default function BuildingMap() {
     const mapLocation = levelLocation;
     const level = useSelector(state => state.level);
     const room = useSelector(state => state.room);
-    const fakeData = [
-        {
-            level: 21,
-            waiting: 0,
-            request: 0
-        },
-        {
-            level: 20,
-            waiting: 0,
-            request: 0
-
-        },
-        {
-            level: 19,
-            waiting: 1,
-            request: 1
-        },
-        {
-            level: 18,
-            waiting: 0,
-            request: 1
-        },
-        {
-            level: 17,
-            waiting: 0,
-            request: 0
-        },
-        {
-            level: 16,
-            waiting: 4,
-            request: 0
-        },
-        {
-            level: 15,
-            waiting: 0,
-            request: 0
-        },
-        {
-            level: 14,
-            waiting: 0,
-            request: 2
-        },
-        {
-            level: 13,
-            waiting: 4,
-            request: 2
-        },
-        {
-            level: 12,
-            waiting: 1,
-            request: 10
-        },
-        {
-            level: 11,
-            waiting: 1,
-            request: 0
-        },
-        {
-            level: 10,
-            waiting: 1,
-            request: 1
-        },
-        {
-            level: 9,
-            waiting: 0,
-            request: 2
-        },
-        {
-            level: 8,
-            waiting:2,
-            request: 0
-        },
-        {
-            level: 7,
-            waiting: 0,
-            request: 0
-        },
-
-    ]
+    const [dataRequest, setDataRequest] = useState();
+    const modal = useSelector(state => state.modal)
     const mouseOver = (index) => {
         document.getElementById(`poly-${index}`).style.fill = "rgba(0,150,0,0.3)";
         document.getElementById(`table-${index}`).style.backgroundColor = "rgba(0,150,0,0.3)";
@@ -102,9 +26,33 @@ export default function BuildingMap() {
     const setSelectLevel = (index) => {
         store.dispatch(setLevel(index))
     }
+    const getCountRequest = async () => {
+        const data = await getCountOfRequest();
+        const result = [];
+        for (let i = 21; i >= 7; i--){
+            if (i + "" in data){
+                let levelData = {
+                    level: i,
+                    waiting: data[i].holding,
+                    request: data[i].request
+                }
+                result.push(levelData);
+            } else {
+                let levelData = {
+                    level: i,
+                    waiting: 0,
+                    request: 0
+                }
+                result.push(levelData);
+            }
+        }
+        setDataRequest(result);
+    }
     useEffect(() => {
         setSelectRoom(-1);
-    },[])
+        getCountRequest();
+    },[modal])
+    if (!dataRequest) {return null}
     return (
         <div className="color3 borderradius boxshadow-inset">
             <div className="building-map dropshadow">
@@ -125,7 +73,7 @@ export default function BuildingMap() {
                 </svg>
                 <div className="level-notification color0 borderradius boxshadow-inset">
                     {
-                        fakeData.map(e => {
+                        dataRequest.map(e => {
                             return (
                                 <div
                                     key={e.level}
@@ -155,7 +103,6 @@ export default function BuildingMap() {
                                         }
                                     </div>
                                 </div>
-
                             )
                         })
                     }

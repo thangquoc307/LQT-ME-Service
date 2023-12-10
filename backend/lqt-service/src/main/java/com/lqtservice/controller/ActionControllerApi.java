@@ -34,5 +34,15 @@ public class ActionControllerApi {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+    @PatchMapping("request/{id}")
+    public ResponseEntity<?> doneRequest(@PathVariable Integer id){
+        Request request = requestService.getRequestById(id);
+        if (request == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            requestService.doneRequest(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
 
 }

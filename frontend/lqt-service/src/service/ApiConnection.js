@@ -73,3 +73,27 @@ export const getCustomerById = async (id) => {
         console.log(e);
     }
 }
+export const doneRequest = async (id) => {
+    try {
+        const res = await axios.patch(`http://localhost:8080/api/request/${id}`);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const getCountOfRequest = async () => {
+    try {
+        const res = await axios.get(`http://localhost:8080/api/request/count`);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const getCountOfRequestByLevel = async (level) => {
+    try {
+        const res = await axios.get(`http://localhost:8080/api/request/count/${level}`);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+}

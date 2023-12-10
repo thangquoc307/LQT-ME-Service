@@ -1,5 +1,7 @@
 package com.lqtservice.controller;
 
+import com.lqtservice.dto.IRequestStatisticsDto;
+import com.lqtservice.dto.RequestStatisticsDto;
 import com.lqtservice.model.Customer;
 import com.lqtservice.model.Employee;
 import com.lqtservice.model.Request;
@@ -105,6 +107,24 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(customer, HttpStatus.OK);
+        }
+    }
+    @GetMapping("request/count")
+    public ResponseEntity<Map<String, RequestStatisticsDto>> getCountOfRequest(){
+        Map<String, RequestStatisticsDto> requestStatisticsDtoList = requestService.getCountOfRequest();
+        if (requestStatisticsDtoList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(requestStatisticsDtoList, HttpStatus.OK);
+        }
+    }
+    @GetMapping("request/count/{level}")
+    public ResponseEntity<Map<String, RequestStatisticsDto>> getCountOfRequestByLevel(@PathVariable Integer level){
+        Map<String, RequestStatisticsDto> requestStatisticsDtoList = requestService.getCountOfRequestByLevel(level);
+        if (requestStatisticsDtoList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(requestStatisticsDtoList, HttpStatus.OK);
         }
     }
 }

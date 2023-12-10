@@ -57,7 +57,7 @@ export default function RequestManage() {
     }
     useEffect(() => {
         getRequestList();
-    }, [modal, room])
+    }, [room])
     useEffect(() => {
         if (selectRequest != -1){
             getDetail();

@@ -1,5 +1,7 @@
 package com.lqtservice.repository;
 
+import com.lqtservice.dto.IRequestLevelDto;
+import com.lqtservice.dto.IRequestStatisticsDto;
 import com.lqtservice.model.Request;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,7 +17,7 @@ public interface IRequestRepository extends JpaRepository<Request, Integer> {
             value = "select * from lqt_service.requests " +
                     "where month(requests.time_order) = :month " +
                     "and year(requests.time_order) = :year " +
-                    "and request_status_id = 1 " +
+                    "and not request_status_id = 2 " +
                     "and is_deleted = 0 order by requests.time_order")
     List<Request> getAllRequestByMonthYear(@Param("month") Integer month,
                                            @Param("year") Integer year);
@@ -55,4 +57,31 @@ public interface IRequestRepository extends JpaRepository<Request, Integer> {
                     "and requests.request_status_id = 2 " +
                     "order by requests.time_request")
     List<Request> getRequestByRoom(@Param("room") String room);
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,
+            value = "update lqt_service.requests set request_status_id = 3 " +
+                    "where (id = :id)")
+    void doneRequest(@Param("id") Integer id);
+    @Query(nativeQuery = true,
+            value = "select count(*) as `count`, `level` as `level`, " +
+                    "`request_status`.`name` as `status` from `requests` " +
+                    "inner join `rooms` on `requests`.`room_id` = `rooms`.`id` " +
+                    "inner join `request_status` " +
+                    "on `request_status`.`id` = `requests`.`request_status_id` " +
+                    "where `requests`.`is_deleted` = 0 " +
+                    "and not `request_status`.`id` = 3 " +
+                    "group by `rooms`.`level`, `requests`.`request_status_id`")
+    List<IRequestStatisticsDto> getCountOfRequest();
+    @Query(nativeQuery = true,
+            value = "select `rooms`.`name` as `room`, " +
+                    "`request_status`.`name` as `status`, " +
+                    "count(*) as `count` from `requests` " +
+                    "inner join `request_status` on `request_status`.`id` = `requests`.`request_status_id` " +
+                    "inner join `rooms` on `rooms`.`id` = `requests`.`room_id` " +
+                    "where `requests`.`is_deleted` = 0 " +
+                    "and not `requests`.`request_status_id` = 3 " +
+                    "and `rooms`.`level` = :level " +
+                    "group by `room`, `status`")
+    List<IRequestLevelDto> getCountOfRequestByLevel(@Param("level") Integer level);
 }
