@@ -7,17 +7,17 @@ values
     
 insert into `accounts` (`avatar`,`email`,`password`,`username`,`account_role_id`)
 values
-	("https://xinhstar.vn/wp-content/uploads/2020/04/suryxin-hot-girl-tiktok-trung-quoc-16.jpg", "chau123@gmail.com", "123456", "chau_pham", 3),
-	("https://static2.yan.vn/YanNews/2167221/201708/20170820-111858-hot-girl-trung-quoc-2sao-1_600x600.jpg", "havyle@gmail.com", "123456", "ha_vy", 3),
-	("https://hlv88.co/wp-content/uploads/2020/08/Fox-Nghiem-can-1.jpg", "khanhthoai@gmail.com", "123456", "phan_khanh_thoai", 3),
-	("https://i.imgur.com/urPD7tc.jpg", "baonhi@gmail.com", "123456", "bao_nhi", 3),
-	("https://static2.yan.vn/YanNews/2167221/201708/20170820-111858-hot-girl-trung-quoc-2sao-1_600x600.jpg", "haiyenle@gmail.com", "123456", "hai_yen", 3),
-	("https://image.tienphong.vn/w1000/Uploaded/2023/zaugtn/2021_09_01/tien-phong-namdienviendientrai12-496.jpg", "xuannguyen@gmail.com", "123456", "nguyen_xuan", 2),
-	("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTQHVcRtlfHIjDHwBV6Yyg2twsQejzZiJ-VQT22huD8cuJ7cXcKX83uAt8pr3AtkZDVSI&usqp=CAU", "khanhdutran@gmail.com", "123456", "khanh_du_tran", 2),
-	("https://duhocsunny.edu.vn/wp-content/uploads/2023/02/Dien-vien-nam-Han-Quoc-Park-Bo-Gum.jpg", "tuankiet@gmail.com", "123456", "kiet_ly", 2),
-	("https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/3/6/1020690/20190323154558-D7c4.jpg", "tranbao@gmail.com", "123456", "bao_tran", 2),
-	("https://static1.dienanh.net/upload/202112/5853724c-44b9-42c9-a037-7eb3fac2f529.jpeg", "vanmanh@gmail.com", "123456", "van_manh", 2),
-	("https://drive.google.com/uc?id=1uRPquTfLUv3jx0sTTEy2_LAAUXViv6Mh", "lequocthang307@gmail.com", "123456", "thang_quoc", 1);
+	("https://xinhstar.vn/wp-content/uploads/2020/04/suryxin-hot-girl-tiktok-trung-quoc-16.jpg", "chau123@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "chau_pham", 3),
+	("https://static2.yan.vn/YanNews/2167221/201708/20170820-111858-hot-girl-trung-quoc-2sao-1_600x600.jpg", "havyle@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "ha_vy", 3),
+	("https://hlv88.co/wp-content/uploads/2020/08/Fox-Nghiem-can-1.jpg", "khanhthoai@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "phan_khanh_thoai", 3),
+	("https://i.imgur.com/urPD7tc.jpg", "baonhi@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "bao_nhi", 3),
+	("https://static2.yan.vn/YanNews/2167221/201708/20170820-111858-hot-girl-trung-quoc-2sao-1_600x600.jpg", "haiyenle@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "hai_yen", 3),
+	("https://image.tienphong.vn/w1000/Uploaded/2023/zaugtn/2021_09_01/tien-phong-namdienviendientrai12-496.jpg", "xuannguyen@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "nguyen_xuan", 2),
+	("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTQHVcRtlfHIjDHwBV6Yyg2twsQejzZiJ-VQT22huD8cuJ7cXcKX83uAt8pr3AtkZDVSI&usqp=CAU", "khanhdutran@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "khanh_du_tran", 2),
+	("https://duhocsunny.edu.vn/wp-content/uploads/2023/02/Dien-vien-nam-Han-Quoc-Park-Bo-Gum.jpg", "tuankiet@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "kiet_ly", 2),
+	("https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/3/6/1020690/20190323154558-D7c4.jpg", "tranbao@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "bao_tran", 2),
+	("https://static1.dienanh.net/upload/202112/5853724c-44b9-42c9-a037-7eb3fac2f529.jpeg", "vanmanh@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "van_manh", 2),
+	("https://drive.google.com/uc?id=1uRPquTfLUv3jx0sTTEy2_LAAUXViv6Mh", "lequocthang307@gmail.com", "$2a$10$x6LfETPWZFvz6iZ6.R73PurqJxU81mvnzDadmIHLAby0wPj9KSXzW", "thang_quoc", 1);
     
 insert into `customers` (`birthday`,`license_id_card`,`name`,`phone`,`account_id`)
 values
