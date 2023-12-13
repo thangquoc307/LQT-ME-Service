@@ -1,5 +1,6 @@
 :root {
     --calendarHeight: 400px;
+    --chatbox: 320px
 }
 .managePage {
     display: grid;
@@ -14,7 +15,7 @@
     grid-area: option;
     display: grid;
     grid-template-areas: "calendar chat" "request chat";
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr var(--chatbox);
     grid-template-rows: var(--calendarHeight) 1fr;
     margin-left: var(--offset);
 }

@@ -1,0 +1,27 @@
+.author {
+    margin: 5% 25% 0;
+    width: 50%;
+    aspect-ratio: 5/1;
+    background-image: url("../../image/logo/logo.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.author-alert {
+    font-weight: bold;
+    font-size: 40px;
+    color: #151018;
+    text-align: center;
+}
+.author-button-back {
+    height: 40px;
+    width: 200px;
+    margin: 0 calc((100% - 200px) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.author-button {
+    width: 100%;
+}

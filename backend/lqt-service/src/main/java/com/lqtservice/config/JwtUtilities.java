@@ -4,8 +4,6 @@ import com.lqtservice.dto.UserAccountDetail;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -29,7 +27,12 @@ public class JwtUtilities implements Serializable {
 //                lấy thời gian hết hạn
                 .setExpiration(expire)
 //                lấy công nghệ mã hóa và lồng chữ ký phía sau
-                .signWith(SignatureAlgorithm.ES512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+//                thêm thông tin
+                .claim("name", userAccountDetail.getAccount().getUsername())
+                .claim("avatar", userAccountDetail.getAccount().getAvatar())
+                .claim("role", userAccountDetail.getAccount().getAccountRole().getName())
+                .claim("id", userAccountDetail.getAccount().getId())
                 .compact();
     }
 //    Lấy thông tin user từ jwt gửi tới
@@ -55,13 +58,5 @@ public class JwtUtilities implements Serializable {
             System.out.println("Mã trống");
         }
         return false;
-    }
-    public String getJwtFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (!bearerToken.equals("") && bearerToken != null && bearerToken.startsWith("Bearer ")){
-            return bearerToken.substring(7);
-        } else {
-            return null;
-        }
     }
 }

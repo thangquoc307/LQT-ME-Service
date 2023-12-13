@@ -6,12 +6,13 @@ import * as Yup from "yup"
 import {toast} from "react-toastify";
 import RegistForm from "./RegistForm";
 import LoginForm from "./LoginForm";
+import ModalConfirm from "../modal/ModalConfirm";
+import {useSelector} from "react-redux";
+import {store} from "../../redux/store";
+import {setModalType} from "../../redux/action";
 export default function Login(){
     const [isLogin, setIsLogin] = useState(true);
     const navigate = useNavigate();
-
-
-
 
     return (
         <div className="login-table color3 boxshadow-outset borderradius">

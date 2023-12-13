@@ -24,6 +24,7 @@
     align-items: center;
     overflow: hidden;
     display: flex;
+    animation: ease-in-out leftSlide 1s;
 }
 .slogan-logo {
     width: 40px;
@@ -133,6 +134,7 @@
     background-position: center;
     display: grid;
     grid-auto-rows: 1fr 50px;
+    animation: ease-in-out rightSlide 1s;
 }
 .contact-map {
     width: 100%;
@@ -149,6 +151,7 @@
     grid-area: calendar;
     padding-left: var(--offset);
     padding-bottom: var(--offset);
+    animation: ease-in-out rightSlide 1s;
 }
 .contact-calendar-table {
     width: 100%;
@@ -177,6 +180,7 @@
     background-position-x: right;
     display: grid;
     grid-template-columns: 150px 450px;
+    animation: ease-in-out bottomSlide 1s;
 }
 .footer-info-avata {
     width: 80px;

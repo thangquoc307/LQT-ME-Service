@@ -19,7 +19,11 @@ export default function DetailLevel() {
         store.dispatch(setLevel(index));
     }
     const getDataRequest = async () => {
-        const data = await getCountOfRequestByLevel(level)
+        let data = await getCountOfRequestByLevel(level);
+        console.log(data)
+        if (!data){
+            data = {};
+        }
         const result = [];
         for (let i = 1; i <= 15; i++){
             let roomName = convertRoom(level, i);

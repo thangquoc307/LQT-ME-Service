@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ActionControllerApi {
     @Autowired
     private IRequestService requestService;
-    @DeleteMapping("request/{id}")
+    @DeleteMapping("admin/request/{id}")
     public ResponseEntity<?> deleteRequest(@PathVariable Integer id){
         Request request = requestService.getRequestById(id);
         if (request == null){
@@ -24,7 +24,7 @@ public class ActionControllerApi {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-    @PostMapping("request")
+    @PostMapping("admin/request")
     public ResponseEntity<?> confirmRequest(@RequestBody RequestDto requestDto){
         Request request = requestService.getRequestById(requestDto.getId());
         if (request == null){
@@ -34,7 +34,7 @@ public class ActionControllerApi {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-    @PatchMapping("request/{id}")
+    @PatchMapping("admin/request/{id}")
     public ResponseEntity<?> doneRequest(@PathVariable Integer id){
         Request request = requestService.getRequestById(id);
         if (request == null){

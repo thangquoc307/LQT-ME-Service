@@ -33,7 +33,7 @@ public class DisplayControllerApi {
     private IEmployeeService employeeService;
     @Autowired
     private ICustomerService customerService;
-    @GetMapping("all_room")
+    @GetMapping("admin/all_room")
     public ResponseEntity<List<Room>> getAllRoom(){
         List<Room> roomList = roomService.getAllRoom();
         if (roomList.isEmpty()){
@@ -42,7 +42,7 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(roomList, HttpStatus.OK);
         }
     }
-    @GetMapping("levelroom/{level}")
+    @GetMapping("admin/levelroom/{level}")
     public ResponseEntity<List<Room>> getRoomByLevel(@PathVariable Integer level){
         List<Room> roomList = roomService.getRoomByLevel(level);
         if (roomList.isEmpty()){
@@ -51,7 +51,7 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(roomList, HttpStatus.OK);
         }
     }
-    @GetMapping("schedule/{month}/{year}")
+    @GetMapping("admin/schedule/{month}/{year}")
     public ResponseEntity<Map<String, List<Request>>> getRequestByMonthYear(
             @PathVariable Integer month, @PathVariable Integer year){
         List<Request> requests = requestService.getAllRequestByMonthYear(month, year);
@@ -72,7 +72,7 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(result, HttpStatus.OK);
         }
     }
-    @GetMapping("request")
+    @GetMapping("admin/request")
     public ResponseEntity<List<Request>> getRequestHolding(){
         List<Request> requests = requestService.getAllRequestHolding();
         if (requests.isEmpty()){
@@ -81,7 +81,7 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(requests, HttpStatus.OK);
         }
     }
-    @GetMapping("request/{room}")
+    @GetMapping("admin/request/{room}")
     public ResponseEntity<List<Request>> getRequestHolding(
             @PathVariable String room){
         List<Request> requests = requestService.getRequestByRoom(room);
@@ -91,7 +91,7 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(requests, HttpStatus.OK);
         }
     }
-    @GetMapping("employee")
+    @GetMapping("admin/employee")
     public ResponseEntity<List<Employee>> getAllEmployee(){
         List<Employee> employees = employeeService.getAllEmployee();
         if (employees.isEmpty()){
@@ -100,7 +100,7 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(employees, HttpStatus.OK);
         }
     }
-    @GetMapping("customer/{id}")
+    @GetMapping("admin/customer/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id){
         Customer customer = customerService.getCustomerById(id);
         if (customer == null){
@@ -109,7 +109,7 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(customer, HttpStatus.OK);
         }
     }
-    @GetMapping("request/count")
+    @GetMapping("admin/request/count")
     public ResponseEntity<Map<String, RequestStatisticsDto>> getCountOfRequest(){
         Map<String, RequestStatisticsDto> requestStatisticsDtoList = requestService.getCountOfRequest();
         if (requestStatisticsDtoList.isEmpty()){
@@ -118,13 +118,22 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(requestStatisticsDtoList, HttpStatus.OK);
         }
     }
-    @GetMapping("request/count/{level}")
+    @GetMapping("admin/request/count/{level}")
     public ResponseEntity<Map<String, RequestStatisticsDto>> getCountOfRequestByLevel(@PathVariable Integer level){
         Map<String, RequestStatisticsDto> requestStatisticsDtoList = requestService.getCountOfRequestByLevel(level);
         if (requestStatisticsDtoList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(requestStatisticsDtoList, HttpStatus.OK);
+        }
+    }
+    @GetMapping("admin/customer")
+    public ResponseEntity<List<Customer>> getAllCustomer(){
+        List<Customer> customers = customerService.getAllCustomer();
+        if (customers.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(customers, HttpStatus.OK);
         }
     }
 }

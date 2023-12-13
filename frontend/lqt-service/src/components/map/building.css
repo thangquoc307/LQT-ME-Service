@@ -8,10 +8,13 @@
     background-position: center;
     background-size: cover;
     position: relative;
+    background-repeat: no-repeat;
+    animation: ease-in-out slideBackGround 0.5s;
 }
 .building-map-svg {
     width: 100%;
     height: 100%;
+    animation: ease-in-out topSlide 0.5s;
 }
 .building-map-polygon {
     fill: rgba(255, 255, 255, 0);
@@ -40,6 +43,8 @@
     background-position: center;
     background-size: cover;
     position: relative;
+    background-repeat: no-repeat;
+    animation: ease-in-out slideBackGround 0.5s;
 }
 .detail-level-back {
     width: 100px;
@@ -65,6 +70,8 @@
     display: grid;
     grid-template-columns: 1fr repeat(2, 40px);
     padding: 0 var(--offset);
+    animation: ease-in-out bottomSlide 0.5s;
+
 }
 .level-notification-item-key {
     width: 100%;
@@ -145,4 +152,10 @@
     transform: translateX(25%) translateY(-50%);
     font-size: 12px;
 }
-
+@keyframes slideBackGround {
+    from{
+        /*background: none;*/
+        background-position-x: -100px;
+        opacity: 0;
+    }
+}

@@ -4,7 +4,7 @@ const initialState = {
     chatCustomer: -1,
     modal: -1,
     level: -1,
-    room: -1
+    room: -1,
 };
 export const reducer = (state = initialState, action) => {
     switch (action.type) {

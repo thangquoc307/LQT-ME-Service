@@ -164,3 +164,11 @@
     text-align: center;
     color: #c1151a;
 }
+.login-form-input-div{
+    display: grid;
+    grid-template-rows: 1fr 20px;
+}
+.login-form-input-div small{
+    color: #c1151a;
+    text-align: center;
+}

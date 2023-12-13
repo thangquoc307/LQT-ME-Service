@@ -1,7 +1,7 @@
 import "./schedule.css"
 import {useEffect, useRef, useState} from "react";
 import {getHourMinute, reduceLengthName, sameDate} from "../../service/formatData";
-import {deleteRequest, doneRequest, getRequestByMonthYear} from "../../service/ApiConnection";
+import {doneRequest, getRequestByMonthYear} from "../../service/ApiConnection";
 import {useSelector} from "react-redux";
 import ModalConfirm from "../modal/ModalConfirm";
 import {store} from "../../redux/store";

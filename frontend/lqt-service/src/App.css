@@ -77,3 +77,27 @@ body {
   color: #c1151a;
   font-weight: bold;
 }
+@keyframes topSlide {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+@keyframes bottomSlide {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+@keyframes leftSlide {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+@keyframes rightSlide {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

@@ -6,6 +6,8 @@ import com.lqtservice.service.impl.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService implements ICustomerService {
     @Autowired
@@ -13,5 +15,10 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer getCustomerById(Integer id) {
         return customerRepository.getCustomerById(id);
+    }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        return customerRepository.getAllCustomer();
     }
 }

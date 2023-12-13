@@ -15,6 +15,7 @@
     grid-template-rows: 1fr 50px;
     grid-template-areas: "content content" "cancel confirm";
     top: 100px;
+    animation: ease-in-out topSlide 0.5s;
 }
 .modal-comfirm-content {
     grid-area: content;
@@ -52,6 +53,7 @@
     transition-duration: 0.2s;
 }
 .modal-schedule {
+    animation: ease-in-out topSlide 0.5s;
     position: fixed;
     width: var(--widthPop);
     z-index: 1000;

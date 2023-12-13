@@ -1,7 +1,7 @@
 package com.lqtservice.config;
 
 import com.lqtservice.dto.UserAccountDetail;
-import com.lqtservice.service.AccountService;
+import com.lqtservice.service.impl.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +19,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtilities jwtUtilities;
     @Autowired
-    private AccountService accountService;
+    private IAccountService accountService;
 
     @Override
     protected void doFilterInternal(
@@ -27,10 +27,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain)
             throws ServletException, IOException {
-        try {
-            String jwt = jwtUtilities.getJwtFromRequest(request);
 
-            if (!jwt.equals("") && jwt != null && jwtUtilities.validateToken(jwt)) {
+        try {
+            String jwt = getJwtFromRequest(request);
+
+            if (jwt != null && jwtUtilities.validateToken(jwt)) {
                 Long accountId = jwtUtilities.getUserIdFromJWT(jwt);
                 UserAccountDetail userAccountDetail = (UserAccountDetail) accountService.loadUserByUserId(accountId);
                 if (userAccountDetail != null) {
@@ -45,7 +46,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
         } catch (Exception e) {
             System.out.println("Lỗi quyền truy cập");
+            System.err.println(e);
         }
+
         filterChain.doFilter(request, response);
+    }
+    private String getJwtFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")){
+            return bearerToken.substring(7);
+        } else {
+            return null;
+        }
     }
 }

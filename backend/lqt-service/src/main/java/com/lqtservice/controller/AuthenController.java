@@ -12,8 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/authen/")
@@ -30,7 +28,6 @@ public class AuthenController {
                         loginDto.getPassword()
                 )
         );
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtUtilities.generateToken((UserAccountDetail) authentication.getPrincipal());

@@ -3,7 +3,8 @@ export const typeAction = (index) => {
         "selectChatCustomer",
         "setModalType",
         "setLevel",
-        "setRoom"
+        "setRoom",
+        "setAccount"
     ]
     return array[index];
 }
