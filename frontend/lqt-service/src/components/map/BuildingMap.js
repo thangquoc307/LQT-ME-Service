@@ -27,8 +27,12 @@ export default function BuildingMap() {
         store.dispatch(setLevel(index))
     }
     const getCountRequest = async () => {
-        const data = await getCountOfRequest();
+        let data = await getCountOfRequest();
         const result = [];
+        if (!data){
+            data = {};
+        }
+
         for (let i = 21; i >= 7; i--){
             if (i + "" in data){
                 let levelData = {

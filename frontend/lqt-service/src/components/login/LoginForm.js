@@ -8,7 +8,6 @@ export default function LoginForm() {
     const navigate = useNavigate();
     const handleLogin = async (value) => {
         const data = await login(value);
-        console.log(data)
         if (data.status == 200) {
             toast.success("Đăng nhập thành công");
             navigate("/");

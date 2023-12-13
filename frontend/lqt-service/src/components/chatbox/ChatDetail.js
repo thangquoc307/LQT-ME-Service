@@ -23,18 +23,20 @@ export function ChatDetail({accountId}) {
     const display = useRef();
 
     const pushMessRealTime = async (type, text) => {
-        const path = "mess/mess-" + accountId;
-        const pathNoti = "noti/mess-" + accountId;
-        const idMessage = IdByNow();
+        if (text != "") {
+            const path = "mess/mess-" + accountId;
+            const pathNoti = "noti/mess-" + accountId;
+            const idMessage = IdByNow();
 
-        await push(refText(database, path), {
-            id: idMessage,
-            adminSend: true,
-            content: text,
-            type: type,
-            release: new Date() + ""
-        })
-        scrollToBottom();
+            await push(refText(database, path), {
+                id: idMessage,
+                adminSend: true,
+                content: text,
+                type: type,
+                release: new Date() + ""
+            })
+            scrollToBottom();
+        }
     }
     const hiddenButton = (e) => {
         let str = e.target.value;

@@ -9,6 +9,8 @@ import com.lqtservice.repository.IRequestRepository;
 import com.lqtservice.service.impl.IRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,4 +111,19 @@ public class RequestService implements IRequestService {
 
         return result;
     }
+
+    @Override
+    public List<Request> getRequestByCustomer(Integer customerid) {
+        List<Request> holding = requestRepository.getHoldingRequestCustomer(customerid);
+        List<Request> waiting = requestRepository.getWaitingRequestCustomer(customerid);
+        List<Request> done = requestRepository.getDoneRequestCustomer(customerid);
+
+        List<Request> list = new ArrayList<>();
+        list.addAll(holding);
+        list.addAll(waiting);
+        list.addAll(done);
+
+        return list;
+    }
+
 }

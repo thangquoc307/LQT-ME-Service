@@ -47,6 +47,7 @@ export default function Header() {
         setInformation();
     },[useModal])
 
+    console.log(role)
     return (
         <div className="color4 header">
             <div className="header-inset color3 boxshadow-inset borderradius">
@@ -62,7 +63,7 @@ export default function Header() {
                              onClick={() => {page("/login")}}>Đăng nhập</div>
                     </>
                 }
-                {role == "admin" &&
+                {["admin","customer","employee"].includes(role) &&
                     <>
                         <div className="header-button-avatar">
                             <div className="header-button-avatar-item"
@@ -84,6 +85,19 @@ export default function Header() {
                         </div>
                         <div className="hover-button color4 borderradius"
                         onClick={showmodalLogout}>
+                            Đăng xuất
+                        </div>
+                    </div>
+                }
+
+                {(dropDown && role == "customer") &&
+                    <div className="dropdown-list">
+                        <div className="hover-button color4 borderradius"
+                             onClick={() => {page("/customer")}}>
+                            Quản lý
+                        </div>
+                        <div className="hover-button color4 borderradius"
+                             onClick={showmodalLogout}>
                             Đăng xuất
                         </div>
                     </div>

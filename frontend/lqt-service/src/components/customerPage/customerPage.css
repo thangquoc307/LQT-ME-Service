@@ -1,0 +1,54 @@
+.customer-page {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: var(--offset);
+}
+.customer-page-schedule {
+    display: grid;
+    grid-template-columns: 500px 1fr 250px;
+    grid-template-rows: 200px 1fr;
+    grid-template-areas: "canlendar none list" "detail detail list";
+    width: 100%;
+    height: 100%;
+    background-image: url("../../image/logo/r-logo-gray.png");
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 200px;
+}
+.customer-page-schedule-canlendar {
+    grid-area: canlendar;
+    margin: var(--offset);
+    width: calc(100% - 2 * var(--offset));
+    height: calc(100% - 2 * var(--offset));
+
+}
+.customer-page-schedule-notification {
+    margin-left: var(--offset);
+
+}
+.customer-page-schedule-list {
+    grid-area: list;
+    width: 100%;
+    height: calc((100vw - 4 * var(--offset))/3);
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: auto;
+
+
+}
+.customer-page-schedule-list-item {
+    height: 60px;
+    padding: var(--offset);
+    border-bottom: #151018 1px solid;
+}
+.customer-page-schedule-list-item-unselect {
+    border-left: #151018 1px solid;
+    transition-duration: 0.2s;
+}
+.customer-page-schedule-list-item-unselect:hover {
+    transition-duration: 0.2s;
+    background-color: #e49db1;
+}
+.customer-page-schedule-detail {
+    grid-area: detail;
+}

@@ -9,15 +9,14 @@ import java.util.Date;
 
 @Component
 public class JwtUtilities implements Serializable {
-//    set thời gian hiệu lực
-    public static final long JWT_TOKEN_VALIDITY = 60 * 60 * 24;
 //    lấy chữ ký khai báo ở application
     @Value("${jwt.secret}")
     private String jwtSecret;
 //    tạo token từ user đăng nhập thành công
     public String generateToken(UserAccountDetail userAccountDetail){
         Date now = new Date();
-        Date expire = new Date(now.getTime() + JWT_TOKEN_VALIDITY);
+        Date expire = new Date();
+        expire.setDate(expire.getDate() + 1);
 
         return Jwts.builder()
 //                lấy id account
@@ -52,6 +51,7 @@ public class JwtUtilities implements Serializable {
             System.out.println("Không tìm thấy");
         } catch (ExpiredJwtException e){
             System.out.println("Hết hạn");
+            System.out.println(e);
         } catch (UnsupportedJwtException e){
             System.out.println("Không hỗ trợ");
         } catch (IllegalArgumentException e){

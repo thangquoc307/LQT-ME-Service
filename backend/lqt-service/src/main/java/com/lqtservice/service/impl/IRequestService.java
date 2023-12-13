@@ -17,5 +17,6 @@ public interface IRequestService {
     void doneRequest(Integer id);
     Map<String, RequestStatisticsDto> getCountOfRequest();
     Map<String, RequestStatisticsDto> getCountOfRequestByLevel(Integer level);
+    List<Request> getRequestByCustomer(Integer customerid);
 
 }

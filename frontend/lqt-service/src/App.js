@@ -9,6 +9,7 @@ import ManagerPage from "./components/managePage/ManagerPage";
 import {requestFilter} from "./service/requestFilter";
 import {HandleAuthor} from "./service/authorization";
 import Authorization from "./components/authorization/Authorization";
+import CustomerPage from "./components/customerPage/CustomerPage";
 
 function App() {
     requestFilter();
@@ -25,9 +26,12 @@ function App() {
         </Routes>
         <Routes>
             <Route element={
-                <HandleAuthor arrayAllowRole={["admin"]}/>
-            }>
+                <HandleAuthor arrayAllowRole={["admin"]}/>}>
                 <Route path="/admin" element={<ManagerPage/>}/>
+            </Route>
+            <Route element={
+                <HandleAuthor arrayAllowRole={["customer"]}/>}>
+                <Route path="/customer" element={<CustomerPage/>}/>
             </Route>
         </Routes>
     </div>

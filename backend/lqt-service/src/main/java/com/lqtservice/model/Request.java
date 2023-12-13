@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
@@ -39,9 +38,8 @@ public class Request {
     @JsonBackReference
     @OneToOne(mappedBy = "request")
     private Bill bill;
-    @JsonBackReference
-    @OneToMany(mappedBy = "request")
-    private List<Feedback> feedbacks;
+    @OneToOne(mappedBy = "request")
+    private Feedback feedbacks;
     @Column(name = "mess", columnDefinition = "longtext")
     private String mess;
 }

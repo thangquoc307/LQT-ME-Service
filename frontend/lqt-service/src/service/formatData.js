@@ -71,3 +71,25 @@ export const getDate = (time) => {
     }
     return `${hour}:${minute} - ${date}-${month}-${year}`
 }
+export const getFullDate = (time) => {
+    let day = new Date(time);
+    let hour = day.getHours();
+    let minute = day.getMinutes();
+    let date = day.getDate();
+    let month = day.getMonth() + 1;
+    let year = day.getFullYear();
+
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    if (minute < 10) {
+        minute = "0" + minute;
+    }
+    if (date < 10) {
+        date = "0" + date;
+    }
+    if (month < 10) {
+        month = "0" + month;
+    }
+    return `${hour}:${minute} - Ngày ${date} tháng ${month} năm ${year}`
+}

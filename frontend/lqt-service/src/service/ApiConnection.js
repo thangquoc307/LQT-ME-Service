@@ -1,5 +1,6 @@
 import axios from "axios";
 import {toast} from "react-toastify";
+import {jwtDecode} from "jwt-decode";
 
 export const getAllRoom = async () => {
     try {
@@ -116,5 +117,18 @@ export const login = async (account) => {
     } catch (e) {
         console.log(e);
         toast.error("Tài khoảng hoặc mật khẩu không đúng")
+    }
+}
+export const getRequestByCustomer = async () => {
+    let token = localStorage.getItem("token");
+    let id;
+    if (token){
+        id = jwtDecode(token).id;
+        try {
+            const res = await axios.get(`http://localhost:8080/api/customer/request/${id}`);
+            return res.data;
+        } catch (e) {
+            console.log(e);
+        }
     }
 }

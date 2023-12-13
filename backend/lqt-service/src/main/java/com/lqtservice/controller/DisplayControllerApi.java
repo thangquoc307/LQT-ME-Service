@@ -136,4 +136,13 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(customers, HttpStatus.OK);
         }
     }
+    @GetMapping("customer/request/{id}")
+    public ResponseEntity<List<Request>> getRequestById(@PathVariable Integer id){
+        List<Request> list = requestService.getRequestByCustomer(id);
+        if (list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+    }
 }

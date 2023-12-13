@@ -84,4 +84,19 @@ public interface IRequestRepository extends JpaRepository<Request, Integer> {
                     "and `rooms`.`level` = :level " +
                     "group by `room`, `status`")
     List<IRequestLevelDto> getCountOfRequestByLevel(@Param("level") Integer level);
+    @Query(nativeQuery = true,
+            value = "select * from requests " +
+                    "where customer_id = :id and request_status_id = 1 " +
+                    "and is_deleted = 0 order by time_order desc")
+    List<Request> getHoldingRequestCustomer(@Param("id") Integer id);
+    @Query(nativeQuery = true,
+            value = "select * from requests " +
+                    "where customer_id = :id and request_status_id = 3 " +
+                    "and is_deleted = 0 order by time_request desc")
+    List<Request> getDoneRequestCustomer(@Param("id") Integer id);
+    @Query(nativeQuery = true,
+            value = "select * from requests " +
+                    "where customer_id = :id and request_status_id = 2 " +
+                    "and is_deleted = 0 order by time_order desc")
+    List<Request> getWaitingRequestCustomer(@Param("id") Integer id);
 }
