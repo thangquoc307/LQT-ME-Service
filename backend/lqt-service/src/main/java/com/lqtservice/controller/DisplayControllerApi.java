@@ -1,6 +1,4 @@
 package com.lqtservice.controller;
-
-import com.lqtservice.dto.IRequestStatisticsDto;
 import com.lqtservice.dto.RequestStatisticsDto;
 import com.lqtservice.model.Customer;
 import com.lqtservice.model.Employee;
@@ -143,6 +141,21 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+    }
+    @GetMapping("customer/request/{id}/{month}/{year}")
+    public ResponseEntity<Map<String, Integer>> getRequestByIdCustomerMonthAndYear(
+            @PathVariable Integer id,
+            @PathVariable Integer month,
+            @PathVariable Integer year){
+        if (id == null || month == null || year == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Map<String, Integer> mapRequestCount = requestService.getRequestByMonthYearandCustomer(id, month, year);
+        if (mapRequestCount.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(mapRequestCount, HttpStatus.OK);
         }
     }
 }

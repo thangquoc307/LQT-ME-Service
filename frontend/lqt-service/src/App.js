@@ -7,9 +7,10 @@ import "react-toastify/dist/ReactToastify.css"
 import Mainpage from "./components/mainpage/Mainpage";
 import ManagerPage from "./components/managePage/ManagerPage";
 import {requestFilter} from "./service/requestFilter";
-import {HandleAuthor} from "./service/authorization";
+import {HandleAuthor, HandleLogin} from "./service/authorization";
 import Authorization from "./components/authorization/Authorization";
 import CustomerPage from "./components/customerPage/CustomerPage";
+import AuthorizationLogin from "./components/authorization/AuthorizationLogin";
 
 function App() {
     requestFilter();
@@ -17,8 +18,11 @@ function App() {
     <div>
         <ToastContainer position="bottom-left"/>
         <Routes>
-            <Route path="/login" element={<Login/>}/>
+            <Route element={<HandleLogin/>}>
+                <Route path="/login" element={<Login/>}/>
+            </Route>
             <Route path="/401" element={<Authorization/>}/>
+            <Route path="/logged" element={<AuthorizationLogin/>}/>
             <Route path="*" element={<Header/>}/>
         </Routes>
         <Routes>

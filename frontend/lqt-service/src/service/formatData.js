@@ -71,6 +71,19 @@ export const getDate = (time) => {
     }
     return `${hour}:${minute} - ${date}-${month}-${year}`
 }
+export const getOnlyDayMonth = (time) => {
+    let day = new Date(time);
+    let date = day.getDate();
+    let month = day.getMonth() + 1;
+    let year = day.getFullYear();
+    if (date < 10) {
+        date = "0" + date;
+    }
+    if (month < 10) {
+        month = "0" + month;
+    }
+    return `${date}-${month}-${year}`
+}
 export const getFullDate = (time) => {
     let day = new Date(time);
     let hour = day.getHours();

@@ -126,4 +126,19 @@ public class RequestService implements IRequestService {
         return list;
     }
 
+    @Override
+    public Map<String, Integer> getRequestByMonthYearandCustomer(Integer id, Integer month, Integer year) {
+        List<Request> list = requestRepository.getRequestByMonthYearandCustomer(id, month, year);
+        Map<String, Integer> result = new HashMap<>();
+
+        for (Request request : list) {
+            String day = request.getTimeOrder().getDayOfMonth() + "";
+            if (result.containsKey(day)){
+                result.put(day, result.get(day) + 1);
+            } else {
+                result.put(day, 1);
+            }
+        }
+        return result;
+    }
 }

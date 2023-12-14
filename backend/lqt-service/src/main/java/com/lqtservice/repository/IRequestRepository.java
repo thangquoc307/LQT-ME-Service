@@ -99,4 +99,17 @@ public interface IRequestRepository extends JpaRepository<Request, Integer> {
                     "where customer_id = :id and request_status_id = 2 " +
                     "and is_deleted = 0 order by time_order desc")
     List<Request> getWaitingRequestCustomer(@Param("id") Integer id);
+    @Query(nativeQuery = true,
+            value = "select * from requests " +
+                    "where customer_id = :id " +
+                    "and request_status_id = 1 " +
+                    "and is_deleted = 0 " +
+                    "and month(requests.time_order) = :month " +
+                    "and year(requests.time_order) = :year " +
+                    "order by time_order desc")
+    List<Request> getRequestByMonthYearandCustomer(
+            @Param("id") Integer id,
+            @Param("month") Integer month,
+            @Param("year") Integer year
+    );
 }

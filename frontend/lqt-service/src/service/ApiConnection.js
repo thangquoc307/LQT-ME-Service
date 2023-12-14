@@ -132,3 +132,19 @@ export const getRequestByCustomer = async () => {
         }
     }
 }
+export const sendFeedBack = async (feedback) => {
+    try {
+        const res = await axios.post(`http://localhost:8080/api/customer/feedback/`, feedback);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const customerDeleteRequest = async (id) => {
+    try {
+        const res = await axios.delete(`http://localhost:8080/api/customer/request/${id}`)
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}

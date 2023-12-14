@@ -110,5 +110,15 @@
 .modal-schedule-content-field small {
     color: #c1151a;
     text-align: center;
-
+}
+.modal-edit {
+    animation: ease-in-out topSlide 0.5s;
+    position: fixed;
+    width: var(--widthPop);
+    z-index: 1000;
+    left: calc((100% - var(--widthPop)) / 2 );
+    background-color: rgba(21, 16, 24, 0.9);
+    display: grid;
+    padding: var(--offset);
+    top: 100px;
 }

@@ -15,13 +15,25 @@
 }
 .author-button-back {
     height: 40px;
-    width: 200px;
-    margin: 0 calc((100% - 200px) / 2);
+    margin: 0 10px;
+    width: calc(100% - 20px);
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .author-button {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+}
+.author-button-login {
+    display: grid;
+    grid-template-columns: 1fr 200px 200px 1fr;
+}
+.customer-detail-request-waiting-textarea {
+    width: 100%;
+    height: 200px;
+    border: #151018 1px solid;
+    padding: var(--offset);
+    resize: none;
 }

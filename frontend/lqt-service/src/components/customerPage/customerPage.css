@@ -1,3 +1,8 @@
+:root{
+    --widthCalendarDetail: 400px;
+    --heightCalendarDetail: 275px;
+    --widthCalendarDisplay: 250px;
+}
 .customer-page {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -5,21 +10,33 @@
 }
 .customer-page-schedule {
     display: grid;
-    grid-template-columns: 500px 1fr 250px;
-    grid-template-rows: 200px 1fr;
-    grid-template-areas: "canlendar none list" "detail detail list";
+    grid-template-columns: 1fr 250px;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: "status list" "detail list";
     width: 100%;
     height: 100%;
     background-image: url("../../image/logo/r-logo-gray.png");
     background-position: bottom left;
     background-repeat: no-repeat;
     background-size: 200px;
+    position: relative;
+}
+.customer-page-status {
+    grid-area: status;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    padding: var(--offset);
 }
 .customer-page-schedule-canlendar {
-    grid-area: canlendar;
-    margin: var(--offset);
-    width: calc(100% - 2 * var(--offset));
-    height: calc(100% - 2 * var(--offset));
+    position: absolute;
+    top: var(--offset);
+    left: var(--offset);
+    display: grid;
+    grid-template-columns: 1fr var(--widthCalendarDisplay);
+    padding: var(--offset);
+    width: var(--widthCalendarDetail);
+    height: var(--heightCalendarDetail);
+    border: #151018 1px solid;
 
 }
 .customer-page-schedule-notification {
@@ -33,8 +50,6 @@
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
     overflow: auto;
-
-
 }
 .customer-page-schedule-list-item {
     height: 60px;
@@ -51,4 +66,27 @@
 }
 .customer-page-schedule-detail {
     grid-area: detail;
+}
+.customer-detail-request-iconHolding {
+    background-image: url("../../image/calendar/holding.png");
+}
+.customer-detail-request-iconWaiting {
+    background-image: url("../../image/calendar/waiting.png");
+}
+.customer-detail-request-iconDone {
+    background-image: url("../../image/calendar/done.png");
+}
+.customer-detail-request-iconDone, .customer-detail-request-iconWaiting, .customer-detail-request-iconHolding{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.customer-detail-request-title {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: #57546a;
+    font-size: 20px;
+    font-weight: bold;
+    padding: var(--offset);
 }

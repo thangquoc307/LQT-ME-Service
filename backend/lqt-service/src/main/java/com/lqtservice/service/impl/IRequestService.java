@@ -18,5 +18,5 @@ public interface IRequestService {
     Map<String, RequestStatisticsDto> getCountOfRequest();
     Map<String, RequestStatisticsDto> getCountOfRequestByLevel(Integer level);
     List<Request> getRequestByCustomer(Integer customerid);
-
+    Map<String, Integer> getRequestByMonthYearandCustomer(Integer id, Integer month, Integer year);
 }

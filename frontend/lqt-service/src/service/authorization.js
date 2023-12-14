@@ -18,3 +18,11 @@ export const HandleAuthor = ({arrayAllowRole}) => {
     return userRole && hasAuthor(arrayAllowRole, userRole) ?
         <Outlet/> : <Navigate to={"/401"}/>
 }
+export const HandleLogin = () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+        return <Navigate to={"/logged"}/>
+    } else {
+        return <Outlet/>
+    }
+}
