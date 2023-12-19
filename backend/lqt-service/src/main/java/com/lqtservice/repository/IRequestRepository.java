@@ -112,4 +112,35 @@ public interface IRequestRepository extends JpaRepository<Request, Integer> {
             @Param("month") Integer month,
             @Param("year") Integer year
     );
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,
+            value = "update lqt_service.requests set " +
+                    "time_order = :timeOrder, " +
+                    "time_request = :timeRequest, " +
+                    "mess = :mess, " +
+                    "room_id = :roomId " +
+                    "where (id = :id)")
+    void editRequest(
+            @Param("id") Integer id,
+            @Param("timeOrder") LocalDateTime timeOrder,
+            @Param("timeRequest") LocalDateTime timeRequest,
+            @Param("mess") String mess,
+            @Param("roomId") Integer roomId
+    );
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true,
+            value = "insert into `requests` " +
+                    "(`time_order`,`time_request`, " +
+                    "`customer_id`,`request_status_id`, " +
+                    "`room_id`,`mess`) " +
+                    "values (:timeOrder, :timeRequest, :customerId, 2, :roomId, :mess)")
+    void createRequest(
+            @Param("timeOrder") LocalDateTime timeOrder,
+            @Param("timeRequest") LocalDateTime timeRequest,
+            @Param("customerId") Integer customerId,
+            @Param("roomId") Integer roomId,
+            @Param("mess") String mess
+    );
 }

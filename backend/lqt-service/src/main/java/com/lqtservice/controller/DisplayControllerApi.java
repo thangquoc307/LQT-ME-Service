@@ -158,4 +158,13 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(mapRequestCount, HttpStatus.OK);
         }
     }
+    @GetMapping("customer/room/{id}")
+    public ResponseEntity<List<Room>> getRoomtByCustomerId(@PathVariable Integer id){
+        List<Room> list = roomService.getRoomByUserId(id);
+        if (list.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+    }
 }

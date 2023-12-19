@@ -3,7 +3,6 @@ import DetailLevel from "./DetailLevel";
 import {useSelector} from "react-redux";
 
 export default function Building() {
-    const room = useSelector(state => state.room);
     const level = useSelector(state => state.level);
     return (
         <div className="buiding">

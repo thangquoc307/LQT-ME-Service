@@ -1,16 +1,26 @@
+import {useSelector} from "react-redux";
 import "./modalConfirm.css"
-import * as Yup from "yup"
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {editRequest, getRoomByCustomer} from "../../service/ApiConnection";
-import {useEffect, useState} from "react";
+import * as Yup from "yup";
+import {store} from "../../redux/store";
+import {setModalType, setRoom} from "../../redux/action";
+import {convertRoom} from "../../service/formatData";
+import {jwtDecode} from "jwt-decode";
+import {createRequest} from "../../service/ApiConnection";
 import {toast} from "react-toastify";
-export default function ModalEdit({setUseModal,request,reload}) {
-    const [roomList, setRoomList] = useState();
+
+export default function ModalCreateRequest() {
+    const room = useSelector(state => state.room);
+    const level = useSelector(state => state.level);
+    const accountId = jwtDecode(localStorage.getItem("token")).sub;
+
+    console.log(accountId)
+
     const initValue = {
-        id: request.id,
-        timeOrder: request.timeOrder,
-        room: request.room.id + "",
-        mess: request.mess,
+        id: accountId,
+        timeOrder: new Date,
+        room: convertRoom(level, room),
+        mess: "",
         timeRequest: new Date
     }
     const validate = Yup.object({
@@ -18,43 +28,24 @@ export default function ModalEdit({setUseModal,request,reload}) {
             .required("Mời nhập ngày hẹn")
             .min(new Date(new Date().setHours(new Date().getHours() + 2)),
                 "Thời gian phải hơn hiện tại ít nhất 2 tiếng"),
-        room: Yup.number().min(1, "Mời chọn phòng gặp vấn đề")
     })
     const handleSubmit = async (value) => {
-        const data = await editRequest(value);
+        const data = await createRequest(value);
         if (data.status == 200){
+            cancelCreate();
             toast.success("Sửa yêu cầu thành công");
-            reload();
-            setUseModal(-1);
         } else {
             toast.error("Sửa yêu cầu không thành công");
         }
     }
-    const getRoomList = async () => {
-        const data = await getRoomByCustomer(request.customer.id);
-        setRoomList(data);
+    const cancelCreate = () => {
+        store.dispatch(setModalType(-1));
+        store.dispatch(setRoom(-1));
     }
-    useEffect(() => {
-        getRoomList();
-    },[])
 
-    if (!roomList) {return null}
     return (
         <div className="modal-edit borderradius boxshadow-outset">
-            <h3 className="textAlert modal-edit-title">Chỉnh sửa yêu cầu</h3>
-            <div className="modal-edit-info">
-                <div className="modal-edit-avatar"
-                     style={{
-                         backgroundImage: `url(${request.customer.account.avatar})`
-                     }}
-                />
-                <div>
-                    <p><span className="textAlert">- Khách hàng : </span>{request.customer.name}</p>
-                    <p><span className="textAlert">- Số điện thoại : </span>{request.customer.phone}</p>
-                    <p><span className="textAlert">- Email : </span>{request.customer.account.email}</p>
-
-                </div>
-            </div>
+            <h3 className="textAlert modal-edit-title">Gửi yêu cầu mới</h3>
             <Formik
                 initialValues={initValue}
                 onSubmit={handleSubmit}
@@ -64,26 +55,7 @@ export default function ModalEdit({setUseModal,request,reload}) {
                     <div className="modal-edit-form">
                         <div className="modal-edit-form-description">- Phòng : </div>
                         <div className="modal-edit-input">
-                            <Field
-                                name="room"
-                                as="select"
-                                class="modal-edit-select borderradius"
-                            >
-                                <option value="0">--Mời chọn phòng--</option>
-                                {
-                                    roomList.map((e, index) => {
-                                        return (
-                                            <option
-                                                key={index}
-                                                value={e.id}
-                                            >
-                                                P{e.name}
-                                            </option>
-                                        )
-                                    })
-                                }
-                            </Field>
-                            <ErrorMessage name="room" component="div"/>
+                            P{convertRoom(level, room)}
                         </div>
                         <div className="modal-edit-form-description">- Thời gian hẹn : </div>
                         <div className="modal-edit-input">
@@ -105,7 +77,7 @@ export default function ModalEdit({setUseModal,request,reload}) {
                     </div>
                     <div className="modal-edit-form-button">
                         <div className="modal-comfirm-cancel cursorPoint color4 borderradius hover-button"
-                             onClick={() => {setUseModal(-1)}}
+                             onClick={cancelCreate}
                         >Hủy</div>
                         <button
                             className="modal-comfirm-confirm cursorPoint color1 borderradius hover-button"
@@ -114,7 +86,6 @@ export default function ModalEdit({setUseModal,request,reload}) {
                             Xác nhận
                         </button>
                     </div>
-
                 </Form>
             </Formik>
         </div>

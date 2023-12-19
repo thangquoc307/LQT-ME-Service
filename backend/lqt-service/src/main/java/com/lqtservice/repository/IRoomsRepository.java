@@ -15,11 +15,16 @@ public interface IRoomsRepository extends JpaRepository<Room, Integer> {
     @Query(nativeQuery = true,
             value = "select * from rooms " +
                     "where is_deleted = 0 " +
-                    "and account_id = :id")
+                    "and customer_id = :id")
     List<Room> getRoomBelongCustomerId(@Param("id") Integer id);
     @Query(nativeQuery = true,
             value = "select * from rooms " +
                     "where is_deleted = 0 " +
                     "and level = :level")
-    List<Room> getRoomByLevel(Integer level);
+    List<Room> getRoomByLevel(@Param("level") Integer level);
+    @Query(nativeQuery = true,
+            value = "select * from rooms " +
+                    "where is_deleted = 0 " +
+                    "and name = :name")
+    Room getRoomByName(@Param("name") String name);
 }

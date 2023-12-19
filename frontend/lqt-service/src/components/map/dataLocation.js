@@ -34,6 +34,12 @@ export const getAvgY = (e) => {
     }
     return (max_y + min_y) / 200;
 }
+export const getMapX = (e) => {
+    return e[0].position_x / 100;
+}
+export const getMapY = (e) => {
+    return (e[e.length - 1].position_y + e[0].position_y) / 200;
+}
 export const levelLocation = [
     {
         level: 21,

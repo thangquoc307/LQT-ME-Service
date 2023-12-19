@@ -5,7 +5,7 @@ import ModalConfirm from "../modal/ModalConfirm";
 import {store} from "../../redux/store";
 import {setModalType} from "../../redux/action";
 import {useState} from "react";
-import {customerDeleteRequest, deleteRequest} from "../../service/ApiConnection";
+import {customerDeleteRequest} from "../../service/ApiConnection";
 import {toast} from "react-toastify";
 import ModalEdit from "../modal/ModalEdit";
 
@@ -47,7 +47,11 @@ export default function DetailWaitingRequest({request, reload, cancelSelect}) {
                 />
             }
             {modal == 5 &&
-                <ModalEdit/>
+                <ModalEdit
+                    request={request}
+                    setUseModal={setModal}
+                    reload={reload}
+                />
             }
             <div className="customer-detail-request-waiting-description">
                 <div className="customer-detail-request-waiting-description-info">

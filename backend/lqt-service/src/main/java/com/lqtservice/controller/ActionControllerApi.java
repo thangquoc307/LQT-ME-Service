@@ -2,10 +2,14 @@ package com.lqtservice.controller;
 
 import com.lqtservice.dto.FeedbackDto;
 import com.lqtservice.dto.RequestDto;
+import com.lqtservice.dto.RequestEditDto;
 import com.lqtservice.model.Feedback;
 import com.lqtservice.model.Request;
+import com.lqtservice.model.Room;
+import com.lqtservice.repository.IRoomsRepository;
 import com.lqtservice.service.impl.IFeedbackService;
 import com.lqtservice.service.impl.IRequestService;
+import com.lqtservice.service.impl.IRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +23,8 @@ public class ActionControllerApi {
     private IRequestService requestService;
     @Autowired
     private IFeedbackService feedbackService;
+    @Autowired
+    private IRoomService roomService;
     @DeleteMapping("admin/request/{id}")
     public ResponseEntity<?> deleteRequest(@PathVariable Integer id){
         Request request = requestService.getRequestById(id);
@@ -74,6 +80,27 @@ public class ActionControllerApi {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             requestService.deleteRequest(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+    @PatchMapping("customer/request")
+    public ResponseEntity<?> customerEditRequest(@RequestBody RequestEditDto requestEditDto){
+        Request request = requestService.getRequestById(requestEditDto.getId());
+        if (request == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            requestService.editRequest(requestEditDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+    @PostMapping("customer/request")
+    public ResponseEntity<?> customerCreateRequest(@RequestBody RequestEditDto requestEditDto){
+        Request request = requestService.getRequestById(requestEditDto.getId());
+        Room room = roomService.getRoomByName(requestEditDto.getRoom());
+        if (request == null || room == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            requestService.createRequest(requestEditDto, room.getId());
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }

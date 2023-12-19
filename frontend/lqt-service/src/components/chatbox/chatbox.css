@@ -1,3 +1,7 @@
+:root{
+    --chatPersonalTitleHeight: 40px;
+    --chatPersonalTitleWidth: 320px;
+}
 .chatbox {
     border-left: 1px #151018 solid;
     width: 100%;
@@ -117,6 +121,7 @@
     bottom: 50px;
     right: 320px;
     animation: ease-in-out bottomSlide 0.5s;
+    z-index: 100;
 }
 .chat {
     display: flex;
@@ -184,4 +189,59 @@
     position: absolute;
     transform: translateX(120%) translateY(-20%);
     color: white;
+}
+.personalChat {
+    position: fixed;
+    bottom: 0;
+    right: calc(2 * var(--offset));
+    width: var(--chatPersonalTitleWidth);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.personalChatHidden {
+    height: var(--chatPersonalTitleHeight);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    animation: ease-in-out bottomSlide 1s;
+    display: flex;
+    align-items: center;
+    color: #57546a;
+    padding: 0 var(--offset);
+}
+.personalChatUnhidden {
+    animation: ease-in-out bottomSlide 1s;
+    display: grid;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    grid-template-rows: var(--chatPersonalTitleHeight) 1fr 60px;
+}
+.personalChatUnhidden-title {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    color: #57546a;
+    padding: 0 var(--offset);
+}
+.personalChatUnhidden-detail {
+    height: 350px;
+    width: calc(100% - 2 * var(--offset));
+    margin: 0 var(--offset);
+    border: #151018 1px solid;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: var(--offset);
+    overflow: auto;
+}
+.personalChatUnhidden-button {
+    padding: 10px var(--offset) 10px;
+    display: grid;
+}
+.personalChatUnhidden-button-type {
+    grid-template-columns: 50px 1fr 50px;
+}
+.personalChatUnhidden-button-nottype {
+    grid-template-columns: 50px 50px 1fr 50px;
 }

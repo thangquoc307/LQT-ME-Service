@@ -78,7 +78,7 @@ export function ChatDetail({accountId}) {
                 let storageRef = refImage(storage, `images-chatbox/` + file.name);
                 let snapshot = await uploadBytes(storageRef, file);
                 let downloadURL = await getDownloadURL(snapshot.ref);
-                pushMessRealTime("img", downloadURL);
+                await pushMessRealTime("img", downloadURL);
             } catch (e) {
                 console.log(e);
             }

@@ -8,6 +8,8 @@ import DetailWaitingRequest from "../customerRequest/DetailWaitingRequest";
 import {DetailDoneRequest} from "../customerRequest/DetailDoneRequest";
 import CustomerCalendar from "../calendar/CustomerCalendar";
 import {useSelector} from "react-redux";
+import PersonalChat from "../chatbox/PersonalChat";
+import PersonalBuilding from "../personalMap/PersonalBuilding";
 export default function CustomerPage() {
     const init = {
         id: -1,
@@ -23,6 +25,7 @@ export default function CustomerPage() {
         setSelectRequest(e)
     }
     const reload = async () => {
+        await setSelectRequest(init);
         const data = await getRequestByCustomer();
         setList(data);
         let tempId = selectRequest.id;
@@ -118,8 +121,9 @@ export default function CustomerPage() {
                 </div>
             </div>
             <div className="customer-page-schedule-notification">
-                <Building/>
+                <PersonalBuilding/>
             </div>
+            <PersonalChat/>
         </div>
     )
 

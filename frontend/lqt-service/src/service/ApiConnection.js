@@ -148,3 +148,27 @@ export const customerDeleteRequest = async (id) => {
         console.log(e);
     }
 }
+export const getRoomByCustomer = async (customerId) => {
+    try {
+        const res = await axios.get(`http://localhost:8080/api/customer/room/${customerId}`);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const editRequest = async (value) => {
+    try {
+        const res = await axios.patch(`http://localhost:8080/api/customer/request/`, value);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const createRequest = async (value) => {
+    try {
+        const res = await axios.post(`http://localhost:8080/api/customer/request/`, value);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}

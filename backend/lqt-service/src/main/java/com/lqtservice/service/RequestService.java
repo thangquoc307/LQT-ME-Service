@@ -1,9 +1,6 @@
 package com.lqtservice.service;
 
-import com.lqtservice.dto.IRequestLevelDto;
-import com.lqtservice.dto.RequestDto;
-import com.lqtservice.dto.IRequestStatisticsDto;
-import com.lqtservice.dto.RequestStatisticsDto;
+import com.lqtservice.dto.*;
 import com.lqtservice.model.Request;
 import com.lqtservice.repository.IRequestRepository;
 import com.lqtservice.service.impl.IRequestService;
@@ -53,6 +50,17 @@ public class RequestService implements IRequestService {
     @Override
     public void doneRequest(Integer id) {
         requestRepository.doneRequest(id);
+    }
+
+    @Override
+    public void editRequest(RequestEditDto requestEditDto) {
+        requestRepository.editRequest(
+                requestEditDto.getId(),
+                requestEditDto.getTimeOrder(),
+                requestEditDto.getTimeRequest(),
+                requestEditDto.getMess(),
+                Integer.parseInt(requestEditDto.getRoom())
+        );
     }
 
     @Override
@@ -140,5 +148,15 @@ public class RequestService implements IRequestService {
             }
         }
         return result;
+    }
+
+    @Override
+    public void createRequest(RequestEditDto requestEditDto, Integer roomId) {
+        requestRepository.createRequest(
+                requestEditDto.getTimeOrder(),
+                requestEditDto.getTimeRequest(),
+                requestEditDto.getId(),
+                roomId,
+                requestEditDto.getMess());
     }
 }

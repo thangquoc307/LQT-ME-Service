@@ -27,4 +27,9 @@ public class RoomService implements IRoomService {
     public List<Room> getRoomByLevel(Integer level) {
         return roomsRepository.getRoomByLevel(level);
     }
+
+    @Override
+    public Room getRoomByName(String name) {
+        return roomsRepository.getRoomByName(name);
+    }
 }

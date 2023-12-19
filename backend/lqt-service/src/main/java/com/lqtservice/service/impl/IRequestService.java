@@ -1,6 +1,7 @@
 package com.lqtservice.service.impl;
 
 import com.lqtservice.dto.RequestDto;
+import com.lqtservice.dto.RequestEditDto;
 import com.lqtservice.dto.RequestStatisticsDto;
 import com.lqtservice.model.Request;
 
@@ -15,8 +16,10 @@ public interface IRequestService {
     void confirmRequest(RequestDto requestDto);
     List<Request> getRequestByRoom(String room);
     void doneRequest(Integer id);
+    void editRequest(RequestEditDto requestEditDto);
     Map<String, RequestStatisticsDto> getCountOfRequest();
     Map<String, RequestStatisticsDto> getCountOfRequestByLevel(Integer level);
     List<Request> getRequestByCustomer(Integer customerid);
     Map<String, Integer> getRequestByMonthYearandCustomer(Integer id, Integer month, Integer year);
+    void createRequest(RequestEditDto requestEditDto,  Integer roomId);
 }

@@ -1,0 +1,36 @@
+.building-map-polygon-personal {
+    fill: rgba(46, 139, 87, 0.3);
+    transition-duration: 0.2s;
+}
+.building-map-polygon-personal:hover {
+    fill: rgba(193, 21, 26, 0.5);
+    transition-duration: 0.2s;
+}
+.map-text {
+    fill: white;
+    font-size: 3px;
+    cursor: default;
+}
+.map-line {
+    stroke: black;
+    stroke-width: 0.1px;
+    stroke-dasharray: 1px;
+    stroke-dashoffset: 5px;
+}
+.polygonpersonal-select {
+    stroke: rgba(255, 255, 255, 0.5);
+    fill: rgba(255, 20, 147, 0.5);
+    transition-duration: 0.2s;
+    stroke-width: 0.2px;
+}
+.polygonpersonal-nonselect {
+    stroke: #151018;
+    fill: rgba(0, 200, 0, 0.2);
+    transition-duration: 0.2s;
+    stroke-width: 0.2px;
+}
+.polygonpersonal-nonselect:hover {
+    fill: rgba(255, 255, 255, 0.5);
+    transition-duration: 0.2s;
+    stroke: rgba(255, 255, 255, 0.8);
+}

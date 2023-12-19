@@ -8,4 +8,5 @@ public interface IRoomService {
     List<Room> getAllRoom();
     List<Room> getRoomByUserId(Integer customerId);
     List<Room> getRoomByLevel(Integer level);
+    Room getRoomByName(String name);
 }

@@ -154,8 +154,13 @@
 }
 @keyframes slideBackGround {
     from{
-        /*background: none;*/
         background-position-x: -100px;
         opacity: 0;
     }
+}
+.text-svg-personal {
+    font-size: 3px;
+    fill: white;
+    stroke: #151018;
+    stroke-width: 0.05px;
 }
