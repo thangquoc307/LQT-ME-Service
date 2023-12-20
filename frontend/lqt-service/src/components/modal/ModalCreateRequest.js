@@ -14,8 +14,6 @@ export default function ModalCreateRequest() {
     const level = useSelector(state => state.level);
     const accountId = jwtDecode(localStorage.getItem("token")).sub;
 
-    console.log(accountId)
-
     const initValue = {
         id: accountId,
         timeOrder: new Date,
@@ -28,6 +26,7 @@ export default function ModalCreateRequest() {
             .required("Mời nhập ngày hẹn")
             .min(new Date(new Date().setHours(new Date().getHours() + 2)),
                 "Thời gian phải hơn hiện tại ít nhất 2 tiếng"),
+        mess: Yup.string().required("Hãy mô tả ngắn về vấn đề của bạn")
     })
     const handleSubmit = async (value) => {
         const data = await createRequest(value);
@@ -67,12 +66,13 @@ export default function ModalCreateRequest() {
                             <ErrorMessage name="timeOrder" component="div"/>
                         </div>
                         <div className="modal-edit-form-description">- Tin nhắn : </div>
-                        <div>
+                        <div className="modal-edit-input">
                             <Field
                                 as="textarea"
                                 name="mess"
                                 class="modal-edit-text borderradius"
                             />
+                            <ErrorMessage name="mess" component="div"/>
                         </div>
                     </div>
                     <div className="modal-edit-form-button">

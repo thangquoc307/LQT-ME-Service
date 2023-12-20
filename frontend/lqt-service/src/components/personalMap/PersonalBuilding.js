@@ -32,7 +32,7 @@ export default function PersonalBuilding() {
     },[])
 
     return (
-        <div className="buiding color3 borderradius boxshadow-inset">
+        <div className="buiding">
             {level == -1 && <PersonalBuildingMap arrayLevel={arrayLevel}/>}
             {level != -1 && <PersonalDetailLevel detailLevel={detailLevel}/>}
         </div>

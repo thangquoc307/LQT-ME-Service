@@ -10,6 +10,7 @@ import java.util.Map;
 
 public interface IRequestService {
     List<Request> getAllRequestByMonthYear(Integer month, Integer year);
+    List<Request> getAllRequestByMonthYearEmployee(Integer month, Integer year, Integer employeeId);
     List<Request> getAllRequestHolding();
     void deleteRequest(Integer id);
     Request getRequestById(Integer id);

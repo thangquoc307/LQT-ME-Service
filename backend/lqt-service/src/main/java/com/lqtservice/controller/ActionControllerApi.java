@@ -6,7 +6,6 @@ import com.lqtservice.dto.RequestEditDto;
 import com.lqtservice.model.Feedback;
 import com.lqtservice.model.Request;
 import com.lqtservice.model.Room;
-import com.lqtservice.repository.IRoomsRepository;
 import com.lqtservice.service.impl.IFeedbackService;
 import com.lqtservice.service.impl.IRequestService;
 import com.lqtservice.service.impl.IRoomService;
@@ -47,6 +46,16 @@ public class ActionControllerApi {
     }
     @PatchMapping("admin/request/{id}")
     public ResponseEntity<?> doneRequest(@PathVariable Integer id){
+        Request request = requestService.getRequestById(id);
+        if (request == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            requestService.doneRequest(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+    @PatchMapping("employee/request/{id}")
+    public ResponseEntity<?> doneRequestEmployee(@PathVariable Integer id){
         Request request = requestService.getRequestById(id);
         if (request == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

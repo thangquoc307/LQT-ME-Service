@@ -47,7 +47,6 @@ export default function Header() {
         setInformation();
     },[useModal])
 
-    console.log(role)
     return (
         <div className="color4 header">
             <div className="header-inset color3 boxshadow-inset borderradius">
@@ -81,7 +80,7 @@ export default function Header() {
                     <div className="dropdown-list">
                         <div className="hover-button color4 borderradius"
                         onClick={() => {page("/admin")}}>
-                            Quản lý
+                            Quản lý công việc
                         </div>
                         <div className="hover-button color4 borderradius"
                         onClick={showmodalLogout}>
@@ -94,7 +93,19 @@ export default function Header() {
                     <div className="dropdown-list">
                         <div className="hover-button color4 borderradius"
                              onClick={() => {page("/customer")}}>
-                            Quản lý
+                            Quản lý căn hộ
+                        </div>
+                        <div className="hover-button color4 borderradius"
+                             onClick={showmodalLogout}>
+                            Đăng xuất
+                        </div>
+                    </div>
+                }
+                {(dropDown && role == "employee") &&
+                    <div className="dropdown-list">
+                        <div className="hover-button color4 borderradius"
+                             onClick={() => {page("/employee")}}>
+                            Lịch làm việc
                         </div>
                         <div className="hover-button color4 borderradius"
                              onClick={showmodalLogout}>

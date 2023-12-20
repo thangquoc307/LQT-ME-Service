@@ -11,6 +11,7 @@ import {HandleAuthor, HandleLogin} from "./service/authorization";
 import Authorization from "./components/authorization/Authorization";
 import CustomerPage from "./components/customerPage/CustomerPage";
 import AuthorizationLogin from "./components/authorization/AuthorizationLogin";
+import EmployeePage from "./components/employeePage/EmployeePage";
 
 function App() {
     requestFilter();
@@ -36,6 +37,10 @@ function App() {
             <Route element={
                 <HandleAuthor arrayAllowRole={["customer"]}/>}>
                 <Route path="/customer" element={<CustomerPage/>}/>
+            </Route>
+            <Route element={
+                <HandleAuthor arrayAllowRole={["employee"]}/>}>
+                <Route path="/employee" element={<EmployeePage/>}/>
             </Route>
         </Routes>
     </div>

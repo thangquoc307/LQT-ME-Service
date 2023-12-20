@@ -17,4 +17,9 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
             value = "select * from customers " +
                     "where is_deleted = 0")
     List<Customer> getAllCustomer();
+    @Query(nativeQuery = true,
+            value = "select * from customers " +
+                    "where is_deleted = 0 " +
+                    "and account_id = :accountId")
+    Customer getCustomerByAccountId(@Param("accountId") Integer customerId);
 }

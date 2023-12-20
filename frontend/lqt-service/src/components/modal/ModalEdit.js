@@ -18,7 +18,8 @@ export default function ModalEdit({setUseModal,request,reload}) {
             .required("Mời nhập ngày hẹn")
             .min(new Date(new Date().setHours(new Date().getHours() + 2)),
                 "Thời gian phải hơn hiện tại ít nhất 2 tiếng"),
-        room: Yup.number().min(1, "Mời chọn phòng gặp vấn đề")
+        room: Yup.number().min(1, "Mời chọn phòng gặp vấn đề"),
+        mess: Yup.string().required("Hãy nhập mô tả ngắn về vấn đề")
     })
     const handleSubmit = async (value) => {
         const data = await editRequest(value);
@@ -95,12 +96,13 @@ export default function ModalEdit({setUseModal,request,reload}) {
                             <ErrorMessage name="timeOrder" component="div"/>
                         </div>
                         <div className="modal-edit-form-description">- Tin nhắn : </div>
-                        <div>
+                        <div className="modal-edit-input">
                             <Field
                                 as="textarea"
                                 name="mess"
                                 class="modal-edit-text borderradius"
                             />
+                            <ErrorMessage name="mess" component="div"/>
                         </div>
                     </div>
                     <div className="modal-edit-form-button">
@@ -114,7 +116,6 @@ export default function ModalEdit({setUseModal,request,reload}) {
                             Xác nhận
                         </button>
                     </div>
-
                 </Form>
             </Formik>
         </div>

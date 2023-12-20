@@ -22,7 +22,7 @@ export default function PersonalBuildingMap({arrayLevel}) {
     },[])
 
     return(
-        <div className="color3 borderradius boxshadow-inset">
+        <div>
             <div className="building-map dropshadow">
                 <svg className="building-map-svg"
                      viewBox="0 0 100 100" preserveAspectRatio="none">

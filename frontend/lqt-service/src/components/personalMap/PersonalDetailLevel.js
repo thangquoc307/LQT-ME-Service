@@ -15,7 +15,6 @@ export default function PersonalDetailLevel({detailLevel}) {
     const setSelectRoom = (index) => {
         store.dispatch(setRoom(index));
         store.dispatch(setModalType(6));
-
     }
     const setSelectLevel = (index) => {
         store.dispatch(setLevel(index));
@@ -40,7 +39,7 @@ export default function PersonalDetailLevel({detailLevel}) {
     }, [level])
 
     return (
-        <div className="color3 borderradius boxshadow-inset">
+        <div>
             <div className="detail-level dropshadow">
                 <svg className="building-map-svg"
                      viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -76,7 +75,6 @@ export default function PersonalDetailLevel({detailLevel}) {
                 >Tầng {level}</div>
             </div>
             {modal == 6 && <ModalCreateRequest/>}
-
         </div>
     )
 }

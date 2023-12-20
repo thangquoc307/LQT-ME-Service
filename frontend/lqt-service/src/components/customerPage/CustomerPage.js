@@ -120,7 +120,7 @@ export default function CustomerPage() {
                         />}
                 </div>
             </div>
-            <div className="customer-page-schedule-notification">
+            <div className="customer-page-schedule-notification color3 boxshadow-inset borderradius">
                 <PersonalBuilding/>
             </div>
             <PersonalChat/>

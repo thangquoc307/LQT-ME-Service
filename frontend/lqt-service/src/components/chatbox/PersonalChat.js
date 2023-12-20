@@ -187,7 +187,7 @@ export default function PersonalChat() {
                     className="personalChatHidden cursorPoint color3"
                     onClick={() => {setShowChat(true)}}
                 >
-                    🗨️ Chăm sóc khách hàng
+                    🗨️ Liên hệ
                 </div>
             }
         </div>

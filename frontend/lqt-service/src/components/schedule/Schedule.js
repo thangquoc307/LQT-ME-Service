@@ -133,7 +133,7 @@ export function Schedule() {
                                             <div className={`detail-day cursorPoint 
                                                     ${sameDate(e, today) ? "detail-day-today" : ""}
                                                     ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
-                                                    onClick={() => {setSelectDay(e)}}
+                                                 onClick={() => {setSelectDay(e)}}
                                                  key={e.id}
                                             >
                                                 {e.getDate()}
@@ -147,7 +147,7 @@ export function Schedule() {
                                             <div className={`detail-day cursorPoint 
                                                     ${sameDate(e, today) ? "detail-day-today" : ""}
                                                     ${sameDate(e, selectDay) ? "detail-day-select" : "detail-day-unselect"}`}
-                                                    onClick={() => {setSelectDay(e)}}
+                                                 onClick={() => {setSelectDay(e)}}
                                                  key={e.id}
                                             >
                                                 {e.getDate()}
@@ -168,7 +168,7 @@ export function Schedule() {
                                 scheduleOnDay.map(e => {
                                     return (
                                         <div className={`schedule-detail-has-item 
-                                        ${e.requestStatus.id == 1 ? 
+                                        ${e.requestStatus.id == 1 ?
                                             "schedule-detail-has-item-holding cursorPoint" :
                                             "schedule-detail-has-item-done"}`}
                                              key={e.id}

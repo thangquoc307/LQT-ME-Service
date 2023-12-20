@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface IEmployeeService {
     List<Employee> getAllEmployee();
+    Employee getEmployeeByAccount(Integer accountId);
+    Employee getEmployeeById(Integer id);
+
 }

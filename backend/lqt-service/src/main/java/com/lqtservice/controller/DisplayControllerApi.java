@@ -1,9 +1,6 @@
 package com.lqtservice.controller;
 import com.lqtservice.dto.RequestStatisticsDto;
-import com.lqtservice.model.Customer;
-import com.lqtservice.model.Employee;
-import com.lqtservice.model.Request;
-import com.lqtservice.model.Room;
+import com.lqtservice.model.*;
 import com.lqtservice.service.impl.ICustomerService;
 import com.lqtservice.service.impl.IEmployeeService;
 import com.lqtservice.service.impl.IRequestService;
@@ -70,6 +67,30 @@ public class DisplayControllerApi {
             return new ResponseEntity<>(result, HttpStatus.OK);
         }
     }
+    @GetMapping("employee/schedule/{month}/{year}/{employeeId}")
+    public ResponseEntity<Map<String, List<Request>>> getRequestByMonthYearEmployee(
+            @PathVariable Integer month,
+            @PathVariable Integer year,
+            @PathVariable Integer employeeId){
+        Employee employee = employeeService.getEmployeeByAccount(employeeId);
+        List<Request> requests = requestService.getAllRequestByMonthYearEmployee(month, year, employee.getId());
+        Map<String, List<Request>> result = new HashMap<>();
+        for (Request request : requests) {
+            String day = request.getTimeOrder().getDayOfMonth() + "";
+            if (result.containsKey(day)){
+                result.get(day).add(request);
+            } else {
+                List<Request> requestList = new ArrayList<>();
+                requestList.add(request);
+                result.put(day, requestList);
+            }
+        }
+        if (requests.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }
+    }
     @GetMapping("admin/request")
     public ResponseEntity<List<Request>> getRequestHolding(){
         List<Request> requests = requestService.getAllRequestHolding();
@@ -99,12 +120,15 @@ public class DisplayControllerApi {
         }
     }
     @GetMapping("admin/customer/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id){
-        Customer customer = customerService.getCustomerById(id);
-        if (customer == null){
+    public ResponseEntity<?> getCustomerById(@PathVariable Integer id){
+        Customer customer = customerService.getCustomerByAccountId(id);
+        Employee employee = employeeService.getEmployeeByAccount(id);
+        if (customer == null && employee == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
+        } else if (customer != null){
             return new ResponseEntity<>(customer, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(employee, HttpStatus.OK);
         }
     }
     @GetMapping("admin/request/count")

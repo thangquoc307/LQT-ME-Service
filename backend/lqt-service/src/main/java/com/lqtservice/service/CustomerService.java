@@ -21,4 +21,9 @@ public class CustomerService implements ICustomerService {
     public List<Customer> getAllCustomer() {
         return customerRepository.getAllCustomer();
     }
+
+    @Override
+    public Customer getCustomerByAccountId(Integer accountId) {
+        return customerRepository.getCustomerByAccountId(accountId);
+    }
 }

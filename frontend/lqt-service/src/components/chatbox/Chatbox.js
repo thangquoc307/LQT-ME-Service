@@ -3,7 +3,7 @@ import {reduceLengthName} from "../../service/formatData";
 import {ChatDetail} from "./ChatDetail";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {getCustomerById, getCustomerList} from "../../service/ApiConnection";
+import {getCustomerById, getCustomerList, getEmployeeList} from "../../service/ApiConnection";
 import {store} from "../../redux/store";
 import {selectChatCustomer} from "../../redux/action";
 export default function Chatbox() {
@@ -13,9 +13,13 @@ export default function Chatbox() {
     const getUserChat = async () => {
         const data = await getCustomerById(customerId);
         setUser(data);
+        console.log(customerId)
+        console.log(data)
     }
     const getCustomer = async () => {
-        const data = await getCustomerList();
+        const dataCustomer = await getCustomerList();
+        const dataEmployee = await getEmployeeList();
+        let data = [...dataCustomer, ...dataEmployee];
         setCustomerList(data);
     }
     const setAccountChat = (id) => {
@@ -50,17 +54,17 @@ export default function Chatbox() {
             </div>
             <div className="chatlist">
                 <div className="chatlist-item color0 borderradius boxshadow-inset">
-                    {customerList && customerList.map(e => {
+                    {customerList && customerList.map((e, index) => {
                         return(
-                            <div key={e.id}
-                                 className={`chatlist-member ${customerId == e.id ?
+                            <div key={"chatlist" + index}
+                                 className={`chatlist-member ${customerId == e.account.id ?
                                      "chatlist-member-select" :
                                      "chatlist-member-unselect"}`}
                                  style={{
                                      backgroundImage: `url(${e.account.avatar})`
                                  }}
                                  title={e.name}
-                                 onClick={() => {setAccountChat(e.id)}}
+                                 onClick={() => {setAccountChat(e.account.id)}}
                             >
                                 <span className="color1 borderradius">9</span>
                             </div>

@@ -224,6 +224,9 @@
     padding: 0 var(--offset);
 }
 .personalChatUnhidden-detail {
+    background-image: url("../../image/logo/r-logo-gray-opacity.png");
+    background-position: center;
+    background-size: contain;
     height: 350px;
     width: calc(100% - 2 * var(--offset));
     margin: 0 var(--offset);

@@ -16,12 +16,14 @@ import java.util.Map;
 public class RequestService implements IRequestService {
     @Autowired
     private IRequestRepository requestRepository;
-
     @Override
     public List<Request> getAllRequestByMonthYear(Integer month, Integer year) {
         return requestRepository.getAllRequestByMonthYear(month, year);
     }
-
+    @Override
+    public List<Request> getAllRequestByMonthYearEmployee(Integer month, Integer year, Integer employeeId) {
+        return requestRepository.getAllRequestByMonthYearEmployee(month, year, employeeId);
+    }
     @Override
     public List<Request> getAllRequestHolding() {
         return requestRepository.getAllRequestHolding();

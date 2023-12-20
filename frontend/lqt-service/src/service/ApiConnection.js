@@ -2,25 +2,17 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {jwtDecode} from "jwt-decode";
 
-export const getAllRoom = async () => {
-    try {
-        const res = await axios.get("http://localhost:8080/api/admin/all_room");
-        return res.data;
-    } catch (e) {
-        console.log(e);
-    }
-}
-export const getAllRoomByLevel = async (level) => {
-    try {
-        const res = await axios.get("http://localhost:8080/api/admin/levelroom/" + level);
-        return res.data;
-    } catch (e) {
-        console.log(e);
-    }
-}
 export const getRequestByMonthYear = async (month, year) => {
     try {
         const res = await axios.get(`http://localhost:8080/api/admin/schedule/${month}/${year}`);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const getRequestByMonthYearEmployee = async (month, year, employee) => {
+    try {
+        const res = await axios.get(`http://localhost:8080/api/employee/schedule/${month}/${year}/${employee}`);
         return res.data;
     } catch (e) {
         console.log(e);
@@ -86,6 +78,14 @@ export const getCustomerById = async (id) => {
 export const doneRequest = async (id) => {
     try {
         const res = await axios.patch(`http://localhost:8080/api/admin/request/${id}`);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+export const doneRequestEmployee = async (id) => {
+    try {
+        const res = await axios.patch(`http://localhost:8080/api/employee/request/${id}`);
         return res;
     } catch (e) {
         console.log(e);

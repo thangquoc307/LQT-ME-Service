@@ -1,9 +1,19 @@
+:root{
+    --widthScheduleEmployee: 500px;
+    --heightScheduleEmployee: 320px;
+}
 .schedule {
     display: grid;
     grid-template-columns: 1fr 200px;
     width: 100%;
     height: 100%;
     border-bottom: #151018 1px solid;
+}
+.schedule-employee {
+    position: absolute;
+    width: var(--widthScheduleEmployee);
+    height: var(--heightScheduleEmployee);
+    border-bottom: #151018 1px dashed;
 }
 .schedule-calendar {
     margin-right: var(--offset);
@@ -22,6 +32,16 @@
     align-items: center;
     transform-origin: left top;
     width: var(--calendarHeight);
+    height: 50px;
+}
+.schedule-calendar-time-employee {
+    transform: rotate(-90deg) translateX(calc(var(--heightScheduleEmployee) * -1));
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: left top;
+    width: var(--heightScheduleEmployee);
     height: 50px;
 }
 .schedule-calendar-detail {

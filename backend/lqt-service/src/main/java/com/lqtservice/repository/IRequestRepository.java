@@ -23,6 +23,17 @@ public interface IRequestRepository extends JpaRepository<Request, Integer> {
                                            @Param("year") Integer year);
     @Query(nativeQuery = true,
             value = "select * from lqt_service.requests " +
+                    "where month(requests.time_order) = :month " +
+                    "and year(requests.time_order) = :year " +
+                    "and not request_status_id = 2 " +
+                    "and employee_id = :employeeId " +
+                    "and is_deleted = 0 order by requests.time_order")
+    List<Request> getAllRequestByMonthYearEmployee(
+            @Param("month") Integer month,
+            @Param("year") Integer year,
+            @Param("employeeId") Integer employeeId);
+    @Query(nativeQuery = true,
+            value = "select * from lqt_service.requests " +
                     "where request_status_id = 2 " +
                     "and is_deleted = 0 order by time_request")
     List<Request> getAllRequestHolding();

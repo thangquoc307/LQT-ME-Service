@@ -1,0 +1,22 @@
+.employee-building-polygon {
+    fill: rgba(46, 139, 87, 0.3);
+    transition-duration: 0.2s;
+}
+.employee-building-polygon:hover {
+    fill: rgba(193, 21, 26, 0.5);
+    transition-duration: 0.2s;
+}
+.employee-map-polygonpersonal {
+    stroke: rgba(255, 255, 255, 0.5);
+    fill: rgba(113, 149, 157, 0.7);
+    transition-duration: 0.2s;
+    stroke-width: 0.2px;
+}
+.text-svg-employee {
+    font-size: 3px;
+    fill: white;
+}
+.text-svg-employee-room {
+    font-size: 2px;
+    fill: white;
+}
