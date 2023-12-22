@@ -85,6 +85,9 @@
     grid-area: description;
     padding-left: var(--offset);
 }
+.customer-detail-request-content-info-description p {
+    margin: 5px;
+}
 .info-avatar-pic {
     grid-area: avatar;
     background-size: cover;
@@ -157,4 +160,33 @@
     padding: var(--offset);
     resize: none;
     font-size: 14px;
+}
+@media screen and (max-width: 1024px) {
+    .customer-detail-request {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr 150px 40px;
+    }
+    .customer-detail-request-holding {
+        grid-template-areas: "description description" "description description" "description description" "button button";
+    }
+    .customer-detail-request-done {
+        grid-template-areas: "info info" "description description" "comment comment" "button button";
+    }
+    .customer-detail-request-waiting {
+        grid-template-areas: "description description" "description description" "description description" "button button";
+    }
+    .customer-detail-request-holding-button {
+        justify-content: right;
+    }
+    .customer-detail-request-content {
+        grid-template-columns: 150px 1fr;
+    }
+    .comment {
+        margin: var(--offset) 0;
+        width: 100%;
+    }
+
+}
+@media screen and (max-width: 414px) {
+
 }

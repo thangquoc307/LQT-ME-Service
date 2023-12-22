@@ -173,18 +173,21 @@ export default function EmployeePage(){
                     {arraySchedule &&
                         arraySchedule.map(e => {
                             return (
-                                <div className={`employee-page-request-list-item 
+                                <>
+                                    <div className={`employee-page-request-list-item 
                                 ${e.id != selectRequest.id && "employee-page-request-list-item-unselect cursorPoint"}`}
-                                     key={e.id}
-                                     onClick={() => {setSelectRequest(e)}}
-                                >
-                                    <div>
-                                        {e.requestStatus.id == 1 && "⏳ "}
-                                        {e.requestStatus.id == 3 && "✔️ "}
-                                        P{e.room.name} : {reduceLengthName(e.mess, 10)}
+                                         key={e.id}
+                                         onClick={() => {setSelectRequest(e)}}
+                                    >
+                                        <div>
+                                            {e.requestStatus.id == 1 && "⏳ "}
+                                            {e.requestStatus.id == 3 && "✔️ "}
+                                            P{e.room.name} : {reduceLengthName(e.mess, 10)}
+                                        </div>
+                                        <div className="request-holding-time">{getDate(e.timeOrder)}</div>
                                     </div>
-                                    <div className="request-holding-time">{getDate(e.timeOrder)}</div>
-                                </div>
+                                </>
+
                             )
                         })
                     }

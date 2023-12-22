@@ -80,7 +80,7 @@ export default function Header() {
                     <div className="dropdown-list">
                         <div className="hover-button color4 borderradius"
                         onClick={() => {page("/admin")}}>
-                            Quản lý công việc
+                            Quản lý
                         </div>
                         <div className="hover-button color4 borderradius"
                         onClick={showmodalLogout}>
@@ -93,7 +93,7 @@ export default function Header() {
                     <div className="dropdown-list">
                         <div className="hover-button color4 borderradius"
                              onClick={() => {page("/customer")}}>
-                            Quản lý căn hộ
+                            Quản lý
                         </div>
                         <div className="hover-button color4 borderradius"
                              onClick={showmodalLogout}>
@@ -105,7 +105,7 @@ export default function Header() {
                     <div className="dropdown-list">
                         <div className="hover-button color4 borderradius"
                              onClick={() => {page("/employee")}}>
-                            Lịch làm việc
+                            Công việc
                         </div>
                         <div className="hover-button color4 borderradius"
                              onClick={showmodalLogout}>

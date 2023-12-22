@@ -25,7 +25,6 @@
     overflow: auto;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-
 }
 .employee-page-request-item {
     grid-area: item;
@@ -132,5 +131,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+}
+@media screen and (max-width: 1024px) {
+    .employee-page {
+        grid-template-columns: 1fr;
+    }
+    .employee-page-calendar {
+        grid-template-columns: 1fr 1fr;
+    }
+    .employee-page-request {
+        margin-left: 0;
+        margin-top: var(--offset);
+    }
+    .employee-page-request-list {
+        height: calc(800px);
+    }
+}
+@media screen and (max-width: 414px) {
 
 }

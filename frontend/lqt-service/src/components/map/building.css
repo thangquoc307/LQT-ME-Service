@@ -70,6 +70,7 @@
     display: grid;
     grid-template-columns: 1fr repeat(2, 40px);
     padding: 0 var(--offset);
+    margin: 2px 0;
     animation: ease-in-out bottomSlide 0.5s;
 
 }
@@ -164,3 +165,30 @@
     stroke: #151018;
     stroke-width: 0.05px;
 }
+@media screen and (max-width: 1024px) {
+
+}
+@media screen and (max-width: 414px) {
+    .level-notification {
+        display: none;
+    }
+    .detail-level-notification {
+        width: 65px;
+        height: 25px;
+        grid-template-columns: 60px;
+        transform: translateX(-25px) translateY(-15px);
+        font-size: 12px;
+    }
+    .detail-level-notification p {
+        text-align: center;
+    }
+    .level-notification-item-request, .level-notification-item-hold {
+        display: none;
+    }
+    .detail-level-title {
+        width: 140px;
+        height: 30px;
+        left: calc((100% - 140px ) / 2);
+    }
+}
+

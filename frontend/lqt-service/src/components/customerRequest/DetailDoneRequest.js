@@ -42,7 +42,7 @@ export function DetailDoneRequest({request, reload}) {
                 <div className="star-container">
                     {
                         request.feedbacks
-                            ?<>
+                            ? <>
                                 <div className={`star ${request.feedbacks.star >= 1 ? "starvote" : "starnovote"}`}/>
                                 <div className={`star ${request.feedbacks.star >= 2 ? "starvote" : "starnovote"}`}/>
                                 <div className={`star ${request.feedbacks.star >= 3 ? "starvote" : "starnovote"}`}/>
@@ -50,7 +50,7 @@ export function DetailDoneRequest({request, reload}) {
                                 <div className={`star ${request.feedbacks.star >= 5 ? "starvote" : "starnovote"}`}/>
 
                             </>
-                            :<>
+                            : <>
                                 <div className={`star ${star >= 1 ? "starvote" : "starnovote"}`}
                                      title={"Quá tệ"} onClick={() => {setStar(1)}}/>
                                 <div className={`star ${star >= 2 ? "starvote" : "starnovote"}`}

@@ -9,7 +9,7 @@ import {
     push,
     refImage,
     refText,
-    storage,
+    storage, update,
     uploadBytes
 } from "../../service/FirebaseConfig";
 
@@ -27,6 +27,13 @@ export function ChatDetail({accountId}) {
             const path = "mess/mess-" + accountId;
             const pathNoti = "noti/mess-" + accountId;
             const idMessage = IdByNow();
+            let customerMess = 0;
+
+            await onValue(refText(database, pathNoti), data => {
+                if (data.val()) {
+                    customerMess = data.val().messCustomer;
+                }
+            })
 
             await push(refText(database, path), {
                 id: idMessage,
@@ -34,6 +41,10 @@ export function ChatDetail({accountId}) {
                 content: text,
                 type: type,
                 release: new Date() + ""
+            })
+            await update(refText(database, pathNoti), {
+                messAdmin: 0,
+                messCustomer: customerMess + 1
             })
             scrollToBottom();
         }

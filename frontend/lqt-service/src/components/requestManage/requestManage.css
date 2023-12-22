@@ -119,3 +119,24 @@
     scale: 1.05;
     transition-duration: 0.2s;
 }
+@media screen and (max-width: 1024px) {
+    .request-list {
+        height: 500px;
+    }
+    .request-list-item {
+        height: 500px;
+    }
+    .request-list-detail {
+        grid-template-columns: 1fr 250px;
+        grid-template-rows: 50px 80px auto 1fr 80px;
+        grid-template-areas:
+                "room room"
+                "none1 info"
+                "time time"
+                "mess mess"
+                "button button";
+    }
+}
+@media screen and (max-width: 414px) {
+
+}

@@ -72,7 +72,41 @@
     justify-content: center;
     align-items: center;
     width: 150px;
-    height: 25px;
+    height: 30px;
     margin-top: calc(var(--offset) / 2);
     animation: topSlide 0.2s ease-in-out;
 }
+
+@media screen and (max-width: 1024px) {
+
+}
+@media screen and (max-width: 414px) {
+    .header-inset {
+        display: grid;
+        grid-template-columns: 150px 0 1fr 130px;
+    }
+    .header-button-avatar {
+        opacity: 0;
+    }
+    .header-button {
+        width: calc(100% - var(--offset));
+    }
+    .header-logo {
+        background-image: url("../../image/logo/r-logo.png");
+        background-size: contain;
+        background-position-x: 20px;
+        background-repeat: no-repeat;
+        transition-duration: 0.2s;
+    }
+    .dropdown-list {
+        grid-auto-rows: 50px;
+        position: fixed;
+        top: calc(var(--header-height) - 2* var(--offset));
+        right: calc(2 * var(--offset));
+    }
+    .dropdown-list div {
+        width: 110px;
+        margin-top: calc(var(--offset) / 3);
+    }
+}
+

@@ -2,7 +2,6 @@ import "./detailRequest.css";
 import {getFullDate} from "../../service/formatData";
 
 export default function DetailHoldingRequest({request}) {
-    console.log(request)
     return (
         <div className="customer-detail-request customer-detail-request-holding">
             <div className="customer-detail-request-holding-description">

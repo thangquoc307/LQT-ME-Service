@@ -20,7 +20,6 @@ export default function ManagerPage() {
                     <RequestManage/>
                 </div>
             </div>
-
         </div>
     )
 }

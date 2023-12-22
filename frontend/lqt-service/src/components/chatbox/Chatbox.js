@@ -1,20 +1,20 @@
 import "./chatbox.css"
-import {reduceLengthName} from "../../service/formatData";
+import {formatNumberOverNine, reduceLengthName} from "../../service/formatData";
 import {ChatDetail} from "./ChatDetail";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {getCustomerById, getCustomerList, getEmployeeList} from "../../service/ApiConnection";
 import {store} from "../../redux/store";
 import {selectChatCustomer} from "../../redux/action";
+import {database, onValue, refText, update} from "../../service/FirebaseConfig";
 export default function Chatbox() {
     const [user, setUser] = useState();
     const customerId = useSelector(state => state.chatCustomer);
     const [customerList, setCustomerList] = useState();
+    const [countMess, setCountMess] = useState({});
     const getUserChat = async () => {
         const data = await getCustomerById(customerId);
         setUser(data);
-        console.log(customerId)
-        console.log(data)
     }
     const getCustomer = async () => {
         const dataCustomer = await getCustomerList();
@@ -25,6 +25,20 @@ export default function Chatbox() {
     const setAccountChat = (id) => {
         store.dispatch(selectChatCustomer(id));
     }
+    const getRealTimeCountMess = () => {
+        onValue(refText(database, "noti"), data => {
+            if (data.val()) {
+                setCountMess(data.val());
+            }
+        })
+    }
+    const resetCountMess = async (customerId) => {
+        setAccountChat(customerId);
+        await update(refText(database, `noti/mess-${customerId}`), {
+            messAdmin: 0
+        })
+
+    }
     useEffect(() => {
         if (customerId != -1) {
             getUserChat();
@@ -32,6 +46,7 @@ export default function Chatbox() {
     },[customerId])
     useEffect(() => {
         getCustomer();
+        getRealTimeCountMess();
     }, [])
     return (
         <div className="chatbox">
@@ -64,9 +79,15 @@ export default function Chatbox() {
                                      backgroundImage: `url(${e.account.avatar})`
                                  }}
                                  title={e.name}
-                                 onClick={() => {setAccountChat(e.account.id)}}
+                                 onClick={() => {resetCountMess(e.account.id)}}
                             >
-                                <span className="color1 borderradius">9</span>
+                                {(countMess[`mess-${e.account.id}`] &&
+                                    countMess[`mess-${e.account.id}`].messAdmin != 0 &&
+                                    countMess[`mess-${e.account.id}`].messAdmin) &&
+                                        <span className="color1 borderradius">
+                                            {formatNumberOverNine(countMess[`mess-${e.account.id}`].messAdmin)}
+                                        </span>
+                                }
                             </div>
                         )
                     })}

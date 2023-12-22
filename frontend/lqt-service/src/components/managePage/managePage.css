@@ -28,3 +28,29 @@
 .managePage-option-request {
     grid-area: request;
 }
+@media screen and (max-width: 1024px) {
+    .managePage {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "map" "option";
+        padding: var(--offset);
+    }
+    .managePage-option {
+        grid-template-areas: "calendar chat" "request chat";
+        grid-template-columns: 1fr var(--chatbox);
+        grid-template-rows: var(--calendarHeight) 1fr;
+        width: 100%;
+        margin-top: var(--offset);
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 414px) {
+    .managePage-option-chat {
+        display: none;
+    }
+    .managePage-option-request {
+        display: none;
+    }
+
+
+}

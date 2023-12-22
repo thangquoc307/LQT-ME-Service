@@ -41,7 +41,6 @@
 }
 .customer-page-schedule-notification {
     margin-left: var(--offset);
-
 }
 .customer-page-schedule-list {
     grid-area: list;
@@ -89,4 +88,26 @@
     font-size: 20px;
     font-weight: bold;
     padding: var(--offset);
+}
+@media screen and (max-width: 1024px) {
+    .customer-page {
+        grid-template-columns: 1fr;
+    }
+    .customer-page-schedule-notification {
+        margin-left: 0;
+    }
+    .customer-page-schedule {
+        grid-template-rows: var(--heightCalendarDetail) 50px 1fr;
+        grid-template-areas: "none list" "status list" "detail list";
+    }
+    .customer-page-schedule-notification {
+        margin-top: var(--offset);
+    }
+    .customer-page-schedule-list {
+        height: calc(var(--heightCalendarDetail) + 580px);
+    }
+
+}
+@media screen and (max-width: 414px) {
+
 }

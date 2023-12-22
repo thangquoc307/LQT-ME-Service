@@ -1,13 +1,15 @@
 :root{
     --chatPersonalTitleHeight: 40px;
     --chatPersonalTitleWidth: 320px;
+    --chatPersonalInfoHeight: 150px;
+    --chatPersonalListHeight: 75px;
 }
 .chatbox {
     border-left: 1px #151018 solid;
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: 150px 1fr;
+    grid-template-rows: var(--chatPersonalInfoHeight) 1fr;
 }
 .chatbox-info {
     display: grid;
@@ -17,7 +19,6 @@
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 30px;
     animation: ease-in-out rightSlide 0.5s;
-
 }
 .chatbox-info-name {
     background-color: #151018;
@@ -48,7 +49,6 @@
     background-position: center;
     border: #151018 1px solid;
 }
-
 .chatbox-detail {
     display: grid;
     grid-template-rows: 1fr 50px;
@@ -65,6 +65,10 @@
     padding: var(--offset);
     overflow: auto;
     border: #151018 1px solid;
+    background-image: url("../../image/logo/r-logo-gray-opacity.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .chatbox-detail-button {
     grid-area: button;
@@ -117,9 +121,9 @@
     background-position: center;
 }
 .emoji {
-    position: absolute;
+    position: fixed;
     bottom: 50px;
-    right: 320px;
+    right: var(--chatbox);
     animation: ease-in-out bottomSlide 0.5s;
     z-index: 100;
 }
@@ -152,7 +156,7 @@
     transition-duration: 0.2s;
 }
 .chatlist {
-    height: 75px;
+    height: var(--chatPersonalListHeight);
     padding: 0 var(--offset);
 }
 .chatlist-item {
@@ -191,6 +195,9 @@
     color: white;
 }
 .personalChat {
+    border-top: #151018 1px solid;
+    border-left: #151018 1px solid;
+    border-right: #151018 1px solid;
     position: fixed;
     bottom: 0;
     right: calc(2 * var(--offset));
@@ -203,7 +210,8 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     animation: ease-in-out bottomSlide 1s;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 40px;
     align-items: center;
     color: #57546a;
     padding: 0 var(--offset);
@@ -219,9 +227,21 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     display: flex;
-    align-items: center;
     color: #57546a;
     padding: 0 var(--offset);
+}
+.personalChatTitle {
+    display: flex;
+    align-items: center;
+}
+.personalChatCountMess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 90%;
+    color: white;
+
 }
 .personalChatUnhidden-detail {
     background-image: url("../../image/logo/r-logo-gray-opacity.png");
@@ -231,12 +251,13 @@
     width: calc(100% - 2 * var(--offset));
     margin: 0 var(--offset);
     border: #151018 1px solid;
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     display: flex;
     flex-direction: column-reverse;
     padding: var(--offset);
     overflow: auto;
+
 }
 .personalChatUnhidden-button {
     padding: 10px var(--offset) 10px;
@@ -247,4 +268,12 @@
 }
 .personalChatUnhidden-button-nottype {
     grid-template-columns: 50px 50px 1fr 50px;
+}
+@media screen and (max-width: 1024px) {
+    .chatbox-detail-display {
+        height: calc(var(--calendarHeight) + 500px - 50px - 75px - var(--chatPersonalInfoHeight));
+    }
+}
+@media screen and (max-width: 414px) {
+
 }

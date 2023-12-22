@@ -180,3 +180,15 @@
     background-color: rgba(0, 128, 0, 0.3);
     transition-duration: 0.2s;
 }
+@media screen and (max-width: 1024px) {
+    .schedule-calendar-detail {
+        grid-template-columns: 35px 1fr 35px;
+        padding: calc(var(--offset) / 2);
+    }
+    .schedule {
+        grid-template-columns: 1fr 175px;
+    }
+}
+@media screen and (max-width: 414px) {
+
+}

@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { update, set, getDatabase, ref as refText, push, onValue, orderByChild, query, equalTo, limitToLast, orderByKey } from "firebase/database";
 import { getStorage, ref as refImage, uploadBytes, getDownloadURL } from "firebase/storage"
 

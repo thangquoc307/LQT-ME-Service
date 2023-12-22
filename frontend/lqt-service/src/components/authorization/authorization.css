@@ -30,3 +30,15 @@
     display: grid;
     grid-template-columns: 1fr 200px 200px 1fr;
 }
+@media screen and (max-width: 1024px) {
+
+}
+@media screen and (max-width: 414px) {
+    .author-button-login {
+        display: block;
+    }
+    .author-button-back {
+        margin: 10px calc((100% - 200px) / 2);
+        width: 200px;
+    }
+}

@@ -20,7 +20,6 @@ export default function DetailLevel() {
     }
     const getDataRequest = async () => {
         let data = await getCountOfRequestByLevel(level);
-        console.log(data)
         if (!data){
             data = {};
         }

@@ -8,11 +8,11 @@ import {
     onValue,
     push,
     refImage,
-    refText,
-    storage,
+    refText, set,
+    storage, update,
     uploadBytes
 } from "../../service/FirebaseConfig";
-import {getDate, IdByNow} from "../../service/formatData";
+import {formatNumberOverNine, getDate, IdByNow} from "../../service/formatData";
 import {jwtDecode} from "jwt-decode";
 export default function PersonalChat() {
     const [showChat, setShowChat] = useState(false);
@@ -20,15 +20,17 @@ export default function PersonalChat() {
     const [inputMess, setInputMess] = useState("");
     const [showEmoji, setShowEmoji] = useState(false);
     const [content, setContent] = useState();
+    const [countUnseenMess, setCountUnseenMess] = useState(0);
     const inputImgRef = useRef();
     const buttonArea = useRef();
     const display = useRef();
     const accountId = jwtDecode(localStorage.token).id;
+    const pathNoti = "noti/mess-" + accountId;
     const pushMessRealTime = async (type, text) => {
         if (text != "") {
             const path = "mess/mess-" + accountId;
-            const pathNoti = "noti/mess-" + accountId;
             const idMessage = IdByNow();
+            let adminMess = 0;
 
             await push(refText(database, path), {
                 id: idMessage,
@@ -37,8 +39,23 @@ export default function PersonalChat() {
                 type: type,
                 release: new Date() + ""
             })
+            await onValue(refText(database, pathNoti), data => {
+                if (data.val()) {
+                    adminMess = data.val().messAdmin;
+                }
+            })
+
+            await update(refText(database, pathNoti), {
+                messAdmin: adminMess + 1,
+                messCustomer: 0
+            })
             scrollToBottom();
         }
+    }
+    const resetCountMess = async () => {
+        await update(refText(database, pathNoti), {
+            messCustomer: 0
+        })
     }
     const hiddenButton = (e) => {
         let str = e.target.value;
@@ -86,8 +103,17 @@ export default function PersonalChat() {
             });
             setContent(message);
         });
+        await onValue(refText(database, pathNoti), data => {
+            if (data.val()) {
+                setCountUnseenMess(data.val().messCustomer);
+            }
+        })
     }
 
+    const showChatBox = () => {
+        setShowChat(true);
+        resetCountMess();
+    }
     const scrollToBottom = () => {
         if (display.current) {
             display.current.scrollTop = display.current.scrollHeight;
@@ -106,9 +132,11 @@ export default function PersonalChat() {
                     <div className="cursorPoint personalChatUnhidden-title"
                          onClick={() => {setShowChat(false)}}
                     >
-                        🗨️ Chăm sóc khách hàng
+                        <div className="personalChatTitle">
+                            🗨️ Chăm sóc khách hàng
+                        </div>
                     </div>
-                    <div className="personalChatUnhidden-detail color0">
+                    <div className="personalChatUnhidden-detail color0 boxshadow-inset">
                         {content &&
                             content.map(e => {
                                 return (
@@ -185,9 +213,16 @@ export default function PersonalChat() {
                 </div> :
                 <div
                     className="personalChatHidden cursorPoint color3"
-                    onClick={() => {setShowChat(true)}}
+                    onClick={showChatBox}
                 >
-                    🗨️ Liên hệ
+                    <div className="personalChatTitle">
+                        🗨️ Chăm sóc khách hàng
+                    </div>
+                    {countUnseenMess > 0 &&
+                        <div className="color1 personalChatCountMess">
+                            {formatNumberOverNine(countUnseenMess)}
+                        </div>
+                    }
                 </div>
             }
         </div>

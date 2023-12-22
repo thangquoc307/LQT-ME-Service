@@ -30,7 +30,6 @@ export default function EmployeeDetailMap({arrayRoom}) {
                             <>
                                 <polygon className="employee-map-polygonpersonal"
                                          points={getLocation(e.point)}
-                                         // onClick={() => {setSelectRoom(e.name)}}
                                 />
                                 <text
                                     textAnchor="middle"
